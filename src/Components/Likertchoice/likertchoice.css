@@ -1,0 +1,13 @@
+fieldset.likertScale {
+    font-size: 16px;  
+}
+
+fieldset.likertScale .likertIndicator {
+    font-size: 20px;
+    border: 2px solid #0481FF;
+    background-color: #ffffff;
+}
+
+fieldset.likertScale .likertResponse > input:checked + .likertIndicator {
+    background-color: #0481FF;
+}

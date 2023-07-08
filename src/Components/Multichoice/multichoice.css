@@ -1,0 +1,37 @@
+.multichoice {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.multichoice > button {
+    border: 1px solid #444444;
+    border-radius: 18px;
+    background-color: white;
+    height: 36px;
+    width: 100%;
+    margin: 8px;
+    color: #444444;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Inter';
+}
+
+.multichoice > button:hover {
+    border: 1px solid #333333;
+    color: #333333;
+    background-color: #f8f8f8;
+}
+
+.multichoice > .clicked {
+    border: 1px solid #0481FF;
+    color: #0481FF;
+    background-color: #bfdefd;
+}
+
+.multichoice > .clicked:hover {
+    border: 1px solid #0473e2;
+    color: #0473e2;
+    background-color: #B3D9FF;
+}

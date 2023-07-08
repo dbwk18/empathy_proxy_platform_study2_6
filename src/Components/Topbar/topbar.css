@@ -1,0 +1,17 @@
+.topbar {
+    display: flex;
+    height: 50px;
+    width: 100%;
+    background-color: #f8f8f8;
+    font-size: 32px;
+    font-family: 'Inter';
+    align-items: center;
+    justify-content: flex-end;
+}
+
+
+.topbar > .worker {
+    font-size: 16px;
+    font-weight: 700;
+    margin-right: 50px;
+}

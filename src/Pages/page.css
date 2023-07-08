@@ -1,0 +1,161 @@
+.page {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    padding-top: 100px;
+}
+
+.page > .footer {
+    margin-top: 100px;
+    width: 200px;
+}
+
+.introduction {
+    margin: auto;
+    min-height: 320px;
+    margin-top: 100px;
+    font-size: 20px;
+    line-height: 1.6;
+    text-align: left;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.buttonContainer > .prevBtn {
+    border: 0;
+    border-radius: 8px;
+    color: white;
+    background-color: #0481FF;
+    padding: 10px 30px;
+    font-size: 16px;
+    text-decoration: none;
+    font-family: 'Inter';
+}
+
+.buttonContainer > .prevBtn:hover {
+    background-color: #0473e2;
+}
+
+
+.buttonContainer > .nextBtn {
+    border: 0;
+    border-radius: 8px;
+    color: white;
+    background-color: #0481FF;
+    padding: 10px 30px;
+    font-size: 16px;
+    text-decoration: none;
+    font-family: 'Inter';
+}
+
+.buttonContainer > .nextBtn:hover {
+    background-color: #0473e2;
+}
+
+
+.survey {
+    width: 800px;
+    margin-top: 10px;
+    min-height: 320px;
+}
+
+.explaination {
+    text-align: left;
+    font-size: 18px;
+    font-family: 'Inter';
+    border-left: 5px solid #0481FF;
+    padding-left: 14px;
+    line-height: 1.6;
+}
+
+.explainBox {
+    margin: 36px 0;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    padding: 16px 24px;
+    text-align: left;
+    line-height: 1.6;
+}
+
+.survey > .questionsContainer {
+    width: 100%;
+    margin-top: 50px;
+}
+
+.survey > .questionsContainer > .questionBox {
+    width: 100%;
+    margin-bottom: 70px;
+}
+
+.survey > .questionsContainer > .questionBox > .question {
+    text-align: left;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-family: 'Inter';
+}
+
+.survey > .questionsContainer > .questionBox > .extraQuestionContainer {
+    text-align: left;
+}
+
+.survey > .questionsContainer > .questionBox > .extraQuestionContainer > .question {
+    margin: 10px 0;
+}
+
+.shortform {
+    width: 750px;
+    padding: 8px 14px;
+    font-size: 16px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.shortform:focus {
+    outline: none;
+    box-shadow: none;
+    border: 1px solid black;
+}
+
+
+.loginContainer {
+    margin: auto;
+    margin-top: 20vh;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    width: 480px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+.loginContainer > .title {
+    text-align: left;
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+.loginContainer > input {
+    margin-bottom: 20px;
+    padding: 6px 12px;
+    font-size: 16px;
+}
+
+.loginBtn {
+    border: 0;
+    border-radius: 8px;
+    color: white;
+    background-color: #0481FF;
+    padding: 10px 30px;
+    font-size: 16px;
+    text-decoration: none;
+    font-family: 'Inter';    
+}
+
+.loginBtn:hover {
+    background-color: #0473e2;
+}
