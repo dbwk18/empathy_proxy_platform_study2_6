@@ -16,7 +16,7 @@ export const LoginPage = (props) => {
         <div className='page'>
             <div className='loginContainer'>
                 <div className='title'>
-                    User ID
+                    Worker ID
                 </div>
                 <input onChange={inputHandler}></input>
                 <Link to={id === '' ? '' : '/intro'} state={{id: id}} className='loginBtn'>Login</Link>
