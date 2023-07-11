@@ -31,7 +31,7 @@ export const Multichoice = (props) => {
                 props.labels.map((label, index) => (
                     <React.Fragment key={index}>
                         <button className= {val === label ? 'clicked' : null} onClick={() => isClicked(label)}  onMouseOver={(e)=> isHovered(e, label)} onMouseLeave={(e) => isHovered(e, null)}>{label}</button>
-                        <Tooltip label={label} hover={hover} xpos={xpos} ypos={ypos} content={props.content[label]}/>
+                        <Tooltip label={label} hover={hover} xpos={xpos} ypos={ypos} content={props.content}/>
                     </React.Fragment>
                 ))
             }

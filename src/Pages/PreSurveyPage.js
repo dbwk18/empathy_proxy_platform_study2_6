@@ -79,7 +79,7 @@ export const PreSurveyPage = (props) => {
                                 <div className='question'>
                                     1. Do you consider yourself to be a 
                                 </div>
-                                <Multichoice val={answer[0]} setAnswer={(val) => setIthAnswer(0, val)} labels={['strong feminist', 'feminist', 'not a feminist', 'anti-feminist', 'no opinion']}/>
+                                <Multichoice val={answer[0]} setAnswer={(val) => setIthAnswer(0, val)} labels={['strong feminist', 'feminist', 'not a feminist', 'anti-feminist', 'no opinion']} content={null}/>
                             </div>
                             <div className='questionBox'>
                                 <div className='question'>
@@ -96,7 +96,7 @@ export const PreSurveyPage = (props) => {
                                         <div className='question'>
                                             {index+1}. {question}
                                         </div>
-                                        <Likertchoice val={answer[index + 2]} id={index + 2} setAnswer={(val) => setIthAnswer(index + 2, val)} labels={['Strongly disagree', 'Disagree', 'Agree', 'Strongly Agree']}/>
+                                        <Likertchoice val={answer[index + 2]} id={index + 2} setAnswer={(val) => setIthAnswer(index + 2, val)} labels={['Strongly disagree', 'Disagree', 'Agree', 'Strongly Agree']} content={null}/>
                                     </div>
                                 ))
                             }           
