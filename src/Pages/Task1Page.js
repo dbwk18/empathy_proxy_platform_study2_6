@@ -34,6 +34,15 @@ export const Task1Page = (props) => {
         setCurrentPageNum(currentPageNum + 1);
     }
 
+    const content = {
+        "Grievance": "frustration over a minority group's perceived privilege.",
+        "Incitement": "implicitly promoting known hate groups and ideologies (e.g. by flaunting in-group power).",
+        "Inferiority": "implying some group or person is of lesser value than another.",
+        "Irony": "using sarcasm, humor, and satire to demean someone.",
+        "Stereotypes": "associating a group with negative attribute using euphemisms, circumlocution, or metaphorical language.",
+        "Threats": "making an indirect commitment to attack someone's body, well-being, reputation, liberty, etc."
+    }
+
     return(
         <>
             <Topbar/>
@@ -92,13 +101,13 @@ export const Task1Page = (props) => {
                                             <div className='question'>
                                             <b>{index + 1}. Tweet: "</b>{data.Tweet}<b>"</b>
                                             </div>
-                                            <Multichoice key={index} val={answer[index][0]} setAnswer={(val) => setIthAnswer(index, 0, val)} labels={['Hate', 'Non-hate', 'Noise']}/>
+                                            <Multichoice key={index} val={answer[index][0]} setAnswer={(val) => setIthAnswer(index, 0, val)} labels={['Hate', 'Non-hate', 'Noise']} content={content}/>
                                             {answer[index][0] === 'Hate' ? 
                                                 <div className='extraQuestionContainer'>
                                                     <div className='question'>
                                                         <b>{index + 1}-a.</b> Select the appropriate type of hate from the following options:
                                                     </div>
-                                                    <Multichoice val={answer[index][1]} setAnswer={(val) => setIthAnswer(index, 1, val)} labels={['Grievance', 'Incitement', 'Inferiority', 'Irony', 'Stereotypes', 'Threats', 'Other']}/>
+                                                    <Multichoice val={answer[index][1]} setAnswer={(val) => setIthAnswer(index, 1, val)} labels={['Grievance', 'Incitement', 'Inferiority', 'Irony', 'Stereotypes', 'Threats', 'Other']} content={content}/>
                                                     <div className='question'>
                                                         <b>{index + 1}-b.</b> Reason why it falls to selected category:
                                                     </div>

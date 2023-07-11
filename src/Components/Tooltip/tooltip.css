@@ -1,0 +1,33 @@
+.tooltip {
+  position: absolute;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 1.5;
+  text-align: left;
+  text-align: start;
+  text-shadow: none;
+  text-transform: none;
+  white-space: normal;
+  word-break: normal;
+  word-spacing: normal;
+  word-wrap: normal;
+  font-size: 12px;
+  display: inline-block;
+  margin-top: 5px;
+}
+
+.tooltip .tooltip-label {
+  display: table-cell;
+  width: 200px;
+  height: 100px;
+  padding: 0 15px;
+  font-size: 13px;
+  background-color: #f8f8f8;
+  box-shadow: 3px 3px 3px 3px #e9e9e9;
+  color: black;
+  text-align: center;
+  vertical-align: middle;
+  align-items: center;
+  border-radius: 8px;
+}
