@@ -63,7 +63,7 @@ export const Task1Page = (props) => {
                     {currentPageNum === 7 ?
                         <>
                             <div className='explaination'>
-                                In task 1, your goal is to detect hate speech in the given tweets and provide annotations accordingly.
+                                In <b>task 1</b>, your goal is to detect hate speech in the given tweets and provide annotations accordingly.
                                 Please carefully read the instructions below to complete the annotations.
                             </div>
                             <div className='explainBox'>

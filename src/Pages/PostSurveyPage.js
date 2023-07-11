@@ -24,7 +24,7 @@ export const PostSurveyPage = (props) => {
         'How insecure, discouraged, irritated, stressed, and annoyed were you?'
     ];
 
-    const [answer, setAnswer] = useState(Array(9).fill(''));
+    const [answer, setAnswer] = useState(Array(10).fill(''));
 
     function checkAllAnswered (answer) {
         const isAllAnswer = answer.every(item => item !== '');
@@ -59,7 +59,11 @@ export const PostSurveyPage = (props) => {
                 <div className='survey'>
                 <div className='explaination'>
                         {currentPageNum === 11 ?
-                            <>blanck</>
+                            <>
+                                This is the post-survey about previous <b>task1</b> and <b>task2</b>.
+                                We would like to gather more detailed information about your experience with the task.
+                                Please take a moment to answer the following questions.
+                            </>
                             :
                             <>
                                 Rate the following questions. (7-point Likert scale; 1-Very Low, 7-Very High)
@@ -70,22 +74,27 @@ export const PostSurveyPage = (props) => {
                         <div className='questionsContainer'>
                             <div className='questionBox'>
                                 <div className='question'>
-                                    <b>1.</b> Did the given information affect your decision in annotation? 
+                                    <b>1.</b> In general, did you think the given statements of perception, cognition, and action reflected your core values toward the (topic)?
                                 </div>
-                                <Multichoice val={answer[0]} setAnswer={(val) => setIthAnswer(0, val)} labels={['Strongly Affect', 'Affect', 'Not Affect', 'Strongly Not Affet']}/>
+                                <Multichoice val={answer[0]} setAnswer={(val) => setIthAnswer(0, val)} labels={['Strongly Reflected', 'Reflected', 'Not Reflected', 'Strongly Not Reflected']}/>
                                 <div className='extraQuestionContainer'>
                                     <div className='question'>
-                                        <b>1-a.</b> If it did, how does it affect your decision? If it did not, why did it not affect your decision?
-
+                                        <b>1-a.</b> At what point did you think it reflected or not reflected your value?
                                     </div>
                                     <input className='shortform' name={1} value={answer[1]} onChange={inputHandler}/>
-                            </div>
+                                </div>
                             </div>
                             <div className='questionBox'>
                                 <div className='question'>
-                                    <b>2.</b> How much did the given information influence your decision?
+                                    <b>2.</b> Do you think the given statements of perception, cognition, and action empathized with your situation as if you were seeing the given tweets? 
                                 </div>
-                                <input className='shortform' name={2} value={answer[2]} onChange={inputHandler}/>
+                                <Multichoice val={answer[2]} setAnswer={(val) => setIthAnswer(2, val)} labels={['Strongly Empathized', 'Empathized', 'Not Empathized', 'Strongly Not Empathized']}/>
+                                <div className='extraQuestionContainer'>
+                                    <div className='question'>
+                                        <b>2-a.</b> At what point did you think it reflected or not reflected your value?
+                                    </div>
+                                    <input className='shortform' name={3} value={answer[3]} onChange={inputHandler}/>
+                                </div>
                             </div>
                         </div>
                         :
@@ -96,7 +105,7 @@ export const PostSurveyPage = (props) => {
                                         <div className='question'>
                                             {index+1}. {question}
                                         </div>
-                                        <Likertchoice val={answer[index + 3]} id={index + 3} setAnswer={(val) => setIthAnswer(index + 3, val)} labels={['Very Low', 'Low', 'Little Low', 'Neutral', 'Little High', 'High', 'Very High']}/>
+                                        <Likertchoice val={answer[index + 4]} id={index + 4} setAnswer={(val) => setIthAnswer(index + 4, val)} labels={['Very Low', 'Low', 'Little Low', 'Neutral', 'Little High', 'High', 'Very High']}/>
                                     </div>
                                 ))
                             }           
@@ -111,7 +120,7 @@ export const PostSurveyPage = (props) => {
                                 <button className='nextBtn disable'>Finish</button>
                             )
                             : 
-                            ( checkAllAnswered(answer.slice(0,3)) ?
+                            ( checkAllAnswered(answer.slice(0,4)) ?
                                 <button className='nextBtn' onClick={next}>Next</button>
                                 :
                                 <button className='nextBtn disable'>Next</button>

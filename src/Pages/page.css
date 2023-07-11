@@ -130,10 +130,13 @@
     border: 1px solid black;
 }
 
+.loginHeader {
+    color: #4c4c4c;
+}
 
 .loginContainer {
     margin: auto;
-    margin-top: 20vh;
+    margin-top: 16vh;
     background-color: #f8f8f8;
     border-radius: 10px;
     width: 480px;
