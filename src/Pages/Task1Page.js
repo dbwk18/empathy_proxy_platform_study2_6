@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { Topbar } from '../Components/Topbar/Topbar';
 import { Multichoice } from '../Components/Multichoice/Multichoice';
 import tweet_data from '../Data/tweet_data.json';
@@ -9,8 +9,20 @@ import './page.css';
 
 export const Task1Page = (props) => {
 
+    // get user id from previous page
+    const location = useLocation();
+    const { id } = location.state;
+
+    // set the page number
     const [currentPageNum, setCurrentPageNum] = useState(7);
     const [answer, setAnswer] = useState(Array(tweet_data.length).fill(['', '', '']));
+
+    function checkAllAnswered (answer) {
+        const isAllAnswer = answer.every(item => 
+            (item[0] === 'Hate' ? (item[1] !== '' && item[2] !== '') : item[0] !== '')
+        );
+        return isAllAnswer;
+    }
 
     const inputHandler = (e) => {
         e.preventDefault();
@@ -45,7 +57,7 @@ export const Task1Page = (props) => {
 
     return(
         <>
-            <Topbar/>
+            <Topbar id={id} currentState={3}/>
             <div className='page'>
                 <div className='survey'>
                     {currentPageNum === 7 ?
@@ -124,7 +136,14 @@ export const Task1Page = (props) => {
                     }        
                     <div className='buttonContainer'>
                         {currentPageNum === 7 ? <div/> : <button className='prevBtn' onClick={prev}>Prev</button>}
-                        {currentPageNum === 8 ? <Link to='/task2' className='nextBtn'>Next</Link> : <button className='nextBtn' onClick={next}>Next</button>}
+                        {currentPageNum === 8 ? 
+                            ( checkAllAnswered(answer) ?
+                                <Link to='/task2' state={{id: id}} className='nextBtn'>Next</Link> 
+                                :
+                                <button className='nextBtn disable'>Next</button>
+                            )
+                            : 
+                            <button className='nextBtn' onClick={next}>Next</button>}
                     </div>
                 </div>
                 <div className='footer'/>

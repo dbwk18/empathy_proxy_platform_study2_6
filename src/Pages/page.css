@@ -57,6 +57,14 @@
     background-color: #0473e2;
 }
 
+.buttonContainer > .disable {
+    background-color: #888888;
+}
+
+.buttonContainer > .disable:hover {
+    background-color: #888888;
+}
+
 
 .survey {
     width: 800px;
@@ -143,6 +151,12 @@
     margin-bottom: 20px;
     padding: 6px 12px;
     font-size: 16px;
+}
+
+.loginDescription {
+    margin-top: 50px;
+    font-size: 14px;
+    color: #888888;
 }
 
 .loginBtn {

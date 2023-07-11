@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { Topbar } from '../Components/Topbar/Topbar';
 import { Multichoice } from '../Components/Multichoice/Multichoice';
 import { Likertchoice } from '../Components/Likertchoice/Likertchoice';
@@ -9,7 +9,13 @@ import './page.css';
 
 export const PreSurveyPage = (props) => {
 
+    // get user id from previous page
+    const location = useLocation();
+    const { id } = location.state;
+
+    // set the page number
     const [currentPageNum, setCurrentPageNum] = useState(5);
+    
     const questions = [
         'I can easily tell if someone else wants to enter a conversation.',
         'I can pick up quickly if someone says one thing but means another.',
@@ -24,6 +30,11 @@ export const PreSurveyPage = (props) => {
     ];
 
     const [answer, setAnswer] = useState(Array(12).fill(''));
+
+    function checkAllAnswered (answer) {
+        const isAllAnswer = answer.every(item => item !== '');
+        return isAllAnswer;
+    }
 
 
     const inputHandler = (e) => {
@@ -49,7 +60,7 @@ export const PreSurveyPage = (props) => {
 
     return(
         <>
-            <Topbar/>
+            <Topbar id={id} currentState={2}/>
             <div className='page'>
                 <div className='survey'>
                     <div className='explaination'>
@@ -93,7 +104,19 @@ export const PreSurveyPage = (props) => {
                     }
                     <div className='buttonContainer'>
                         {currentPageNum === 5 ? <div/> : <button className='prevBtn' onClick={prev}>Prev</button>}
-                        {currentPageNum === 6 ? <Link to='/task1' className='nextBtn'>Next</Link> : <button className='nextBtn' onClick={next}>Next</button>}
+                        {currentPageNum === 6 ? 
+                            ( checkAllAnswered(answer) ?
+                                <Link to='/task1' state={{id: id}} className='nextBtn'>Next</Link>
+                                :
+                                <button className='nextBtn disable'>Next</button>
+                            )
+                            :
+                            (   checkAllAnswered(answer.slice(0,2)) ?
+                                <button className='nextBtn' onClick={next}>Next</button>
+                            :
+                                <button className='nextBtn disable'>Next</button>
+                            )
+                        }
                     </div>
                 </div>
                 <div className='footer'/>

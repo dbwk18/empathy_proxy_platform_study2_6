@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { Topbar } from '../Components/Topbar/Topbar';
 import { Multichoice } from '../Components/Multichoice/Multichoice';
 import { Likertchoice } from '../Components/Likertchoice/Likertchoice';
@@ -9,6 +9,11 @@ import './page.css';
 
 export const PostSurveyPage = (props) => {
 
+    // get user id from previous page
+    const location = useLocation();
+    const { id } = location.state;
+
+    // set the page number
     const [currentPageNum, setCurrentPageNum] = useState(11);
     const questions = [
         'How mentally demanding was the task?',
@@ -20,6 +25,11 @@ export const PostSurveyPage = (props) => {
     ];
 
     const [answer, setAnswer] = useState(Array(9).fill(''));
+
+    function checkAllAnswered (answer) {
+        const isAllAnswer = answer.every(item => item !== '');
+        return isAllAnswer;
+    }
 
     function setIthAnswer (i, val) {
         setAnswer(prevAnswer => {
@@ -44,7 +54,7 @@ export const PostSurveyPage = (props) => {
 
     return(
         <>
-            <Topbar/>
+            <Topbar id={id} currentState={5}/>
             <div className='page'>
                 <div className='survey'>
                 <div className='explaination'>
@@ -94,7 +104,19 @@ export const PostSurveyPage = (props) => {
                     }
                     <div className='buttonContainer'>
                         {currentPageNum === 11 ? <div/> : <button className='prevBtn' onClick={prev}>Prev</button>}
-                        {currentPageNum === 12 ? <Link to='/' className='nextBtn'>Finish</Link> : <button className='nextBtn' onClick={next}>Next</button>}
+                        {currentPageNum === 12 ? 
+                            ( checkAllAnswered(answer) ?
+                                <Link to='/end' state={{id: id}} className='nextBtn'>Finish</Link> 
+                                :
+                                <button className='nextBtn disable'>Finish</button>
+                            )
+                            : 
+                            ( checkAllAnswered(answer.slice(0,3)) ?
+                                <button className='nextBtn' onClick={next}>Next</button>
+                                :
+                                <button className='nextBtn disable'>Next</button>
+                            )
+                        }
                     </div>
                 </div>
                 <div className='footer'/>

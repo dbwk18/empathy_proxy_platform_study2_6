@@ -9,6 +9,7 @@ import { PreSurveyPage } from './Pages/PreSurveyPage';
 import { Task1Page } from './Pages/Task1Page';
 import { Task2Page } from './Pages/Task2Page';
 import { PostSurveyPage } from './Pages/PostSurveyPage';
+import { EndPage } from './Pages/EndPage';
 
 import './App.css';
 
@@ -24,6 +25,7 @@ function App() {
             <Route path='/task1' element={<Task1Page/>}/>
             <Route path='/task2' element={<Task2Page/>}/>
             <Route path='/post' element={<PostSurveyPage/>}/>
+            <Route path='/end' element={<EndPage/>}/>
           </Routes>        
         </div>
       </div>      

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { Topbar } from '../Components/Topbar/Topbar';
 
 import './page.css';
@@ -7,6 +7,11 @@ import './page.css';
 
 export const IntroPage = (props) => {
 
+    // get user id from previous page
+    const location = useLocation();
+    const { id } = location.state;
+
+    // set the page number
     const [currentPageNum, setCurrentPageNum] = useState(2);
 
     function prev () {
@@ -19,7 +24,7 @@ export const IntroPage = (props) => {
 
     return(
         <>
-            <Topbar/>
+            <Topbar id={id} currentState={1}/>
             <div className='page'>
                 <div className='introduction'>
                     {currentPageNum === 2 ?
@@ -68,7 +73,7 @@ export const IntroPage = (props) => {
                 </div>
                 <div className='buttonContainer'>
                     {currentPageNum === 2 ? <div/> : <button className='prevBtn' onClick={prev}>Prev</button>}
-                    {currentPageNum === 4 ? <Link to = '/pre' className='nextBtn' >Start</Link> : <button className='nextBtn' onClick={next}>Next</button>}
+                    {currentPageNum === 4 ? <Link to = '/pre' state={{id: id}} className='nextBtn' >Start</Link> : <button className='nextBtn' onClick={next}>Next</button>}
                 </div>
             </div>
         </>
