@@ -5,7 +5,7 @@
     justify-content: space-evenly;
 }
 
-.multichoice button {
+.multichoice > button {
     border: 1px solid #444444;
     border-radius: 18px;
     background-color: white;
@@ -18,7 +18,7 @@
     font-family: 'Inter';
 }
 
-.multichoice  button:hover {
+.multichoice > button:hover {
     border: 1px solid #333333;
     color: #333333;
     background-color: #f8f8f8;
