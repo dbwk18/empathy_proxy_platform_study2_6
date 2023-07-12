@@ -73,7 +73,7 @@ export const Task1Page = (props) => {
                                 <br/>
                                 <b> • &nbsp;Non-hate:</b> If a tweet does not contain hate speech, select this annotation. Tweets in this category should be free from any form of hate speech or offensive language.
                                 <br/>
-                                <b> • &nbsp;Noise:</b> If you are not confident in which label to assign, select this annotation. 
+                                <b> • &nbsp;Neutral:</b> If a tweet does not express hate or exhibit any clear sentiment, select this annotation. Neutral tweets typically present information, facts, or general statements without expressing any strong emotion or bias.
                             </div>
                             <div className='explaination'>
                                 If you select the “Hate” annotation, you will be provided with an additional set of options to further categorize the type of hate expressed in the tweet. Please select the appropriate type of hate from the following options: 
@@ -104,7 +104,7 @@ export const Task1Page = (props) => {
                                 <br/>
                                 <b> • &nbsp;Non-hate:</b> If a tweet does not contain hate speech, select this annotation. Tweets in this category should be free from any form of hate speech or offensive language.
                                 <br/>
-                                <b> • &nbsp;Noise:</b> If you are not confident in which label to assign, select this annotation. 
+                                <b> • &nbsp;Neutral:</b> If a tweet does not express hate or exhibit any clear sentiment, select this annotation. Neutral tweets typically present information, facts, or general statements without expressing any strong emotion or bias.
                             </div>
                             <div className='questionsContainer'>
                                 {
@@ -113,7 +113,7 @@ export const Task1Page = (props) => {
                                             <div className='question'>
                                             <b>{index + 1}. Tweet: "</b>{data.Tweet}<b>"</b>
                                             </div>
-                                            <Multichoice key={index} val={answer[index][0]} setAnswer={(val) => setIthAnswer(index, 0, val)} labels={['Hate', 'Non-hate', 'Noise']} content={content}/>
+                                            <Multichoice key={index} val={answer[index][0]} setAnswer={(val) => setIthAnswer(index, 0, val)} labels={['Hate', 'Non-hate', 'Neutral']} content={content}/>
                                             {answer[index][0] === 'Hate' ? 
                                                 <div className='extraQuestionContainer'>
                                                     <div className='question'>
