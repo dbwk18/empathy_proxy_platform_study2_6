@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Topbar } from '../Components/Topbar/Topbar';
 import { Multichoice } from '../Components/Multichoice/Multichoice';
 import { Likertchoice } from '../Components/Likertchoice/Likertchoice';
-
+import { firebaseDB } from '../firebase';
+import { ref, push } from "firebase/database";
 import './page.css';
 
 
 export const PreSurveyPage = (props) => {
 
     // get user id from previous page
+    const navigate = useNavigate();
     const location = useLocation();
     const { id } = location.state;
 
     // set the page number
     const [currentPageNum, setCurrentPageNum] = useState(5);
-    
+ 
     const questions = [
         'I can easily tell if someone else wants to enter a conversation.',
         'I can pick up quickly if someone says one thing but means another.',
@@ -36,6 +38,21 @@ export const PreSurveyPage = (props) => {
         return isAllAnswer;
     }
 
+    const writeUserData = async () => {
+        // create a reference to the user's specific location in the database
+        const userRef = ref(firebaseDB, 'users/' + id);
+    
+        const dataObject = {};
+        for (let i = 0; i < answer.length; i++) {
+            dataObject[`pre_answer_${i < 10 ? '0' + String(i + 1): i + 1}`] = answer[i];
+        }
+        await push(userRef, dataObject);
+    }
+
+    const clickLink = async () => {
+        await writeUserData();
+        navigate('/task1', { state: { id } });
+    }
 
     const inputHandler = (e) => {
         e.preventDefault();
@@ -106,7 +123,7 @@ export const PreSurveyPage = (props) => {
                         {currentPageNum === 5 ? <div/> : <button className='prevBtn' onClick={prev}>Prev</button>}
                         {currentPageNum === 6 ? 
                             ( checkAllAnswered(answer) ?
-                                <Link to='/task1' state={{id: id}} className='nextBtn'>Next</Link>
+                                <button onClick={clickLink} className='nextBtn'>Next</button>
                                 :
                                 <button className='nextBtn disable'>Next</button>
                             )

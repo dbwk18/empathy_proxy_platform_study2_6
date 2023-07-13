@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Topbar } from '../Components/Topbar/Topbar';
 import { Multichoice } from '../Components/Multichoice/Multichoice';
 import { Likertchoice } from '../Components/Likertchoice/Likertchoice';
+import { firebaseDB } from '../firebase';
+import { ref, push } from "firebase/database";
 
 import './page.css';
 
@@ -10,11 +12,26 @@ import './page.css';
 export const PostSurveyPage = (props) => {
 
     // get user id from previous page
+    const navigate = useNavigate();
     const location = useLocation();
     const { id } = location.state;
 
     // set the page number
     const [currentPageNum, setCurrentPageNum] = useState(11);
+
+    const questions_qcae = [
+        'I can easily tell if someone else wants to enter a conversation.',
+        'I can pick up quickly if someone says one thing but means another.',
+        'I am good at predicting how someone will feel.',
+        'I am quick to spot when someone in a group is feeling awkward or uncomfortable.',
+        'Other people tell me I am good at understanding how they are feeling and what they are thinking.',
+        'I can easily tell if someone else is interested or bored with what I am saying',
+        'I can sense if I am intruding, even if the other person does not tell me.',
+        'I can easily work out what another person might want to talk about.',
+        'I can tell if someone is masking their true emotion.',
+        'I am good at predicting what someone will do.'
+    ];
+
     const questions = [
         'How mentally demanding was the task?',
         'How physically demanding was the task?',
@@ -24,11 +41,27 @@ export const PostSurveyPage = (props) => {
         'How insecure, discouraged, irritated, stressed, and annoyed were you?'
     ];
 
-    const [answer, setAnswer] = useState(Array(10).fill(''));
+    const [answer, setAnswer] = useState(Array(20).fill(''));
 
     function checkAllAnswered (answer) {
         const isAllAnswer = answer.every(item => item !== '');
         return isAllAnswer;
+    }
+
+    const writeUserData = async () => {
+        // create a reference to the user's specific location in the database
+        const userRef = ref(firebaseDB, 'users/' + id);
+    
+        const dataObject = {};
+        for (let i = 0; i < answer.length; i++) {
+            dataObject[`post_answer_${i < 9 ? '0' + String(i + 1): i + 1}`] = answer[i];
+        }
+        await push(userRef, dataObject);
+    }
+
+    const clickLink = async () => {
+        await writeUserData();
+        navigate('/end', { state: { id } });
     }
 
     function setIthAnswer (i, val) {
@@ -65,9 +98,18 @@ export const PostSurveyPage = (props) => {
                                 Please take a moment to answer the following questions.
                             </>
                             :
-                            <>
-                                Rate the following questions. (7-point Likert scale; 1-Very Low, 7-Very High)
-                            </>
+                            (currentPageNum === 12 ?
+                                <>
+                                    Read each statement and check a number that best reflects the degree to which a particular statement relates (or does not relate) to you.
+                                    <br/><b>(4-point Likert scale; 1-Strongly disagree, 2-Disagree, 3-Agree, 4-Strongly agree)</b>
+                                </>
+                                :
+                                <>
+                                    Rate the following questions. (7-point Likert scale; 1-Very Low, 7-Very High)
+                                </>
+
+                                
+                            )
                         }
                     </div>
                     {currentPageNum === 11 ?
@@ -98,33 +140,56 @@ export const PostSurveyPage = (props) => {
                             </div>
                         </div>
                         :
-                        <div className='questionsContainer'>
-                            {
-                                questions.map((question, index) => (
-                                    <div className= 'questionBox' key={question}>
-                                        <div className='question'>
-                                            {index+1}. {question}
+                        ( currentPageNum === 12 ?
+                            <div className='questionsContainer'>
+                                {
+                                    questions_qcae.map((question, index) => (
+                                        <div className= 'questionBox' key={question}>
+                                            <div className='question'>
+                                                {index+1}. {question}
+                                            </div>
+                                            <Likertchoice val={answer[index + 4]} id={index + 4} setAnswer={(val) => setIthAnswer(index + 4, val)} labels={['Strongly disagree', 'Disagree', 'Agree', 'Strongly Agree']} content={null}/>
                                         </div>
-                                        <Likertchoice val={answer[index + 4]} id={index + 4} setAnswer={(val) => setIthAnswer(index + 4, val)} labels={['Very Low', 'Low', 'Little Low', 'Neutral', 'Little High', 'High', 'Very High']}/>
-                                    </div>
-                                ))
-                            }           
-                        </div>
+                                    ))
+                                }           
+                            </div>
+                            :
+                            <div className='questionsContainer'>
+                                {
+                                    questions.map((question, index) => (
+                                        <div className= 'questionBox' key={question}>
+                                            <div className='question'>
+                                                {index+1}. {question}
+                                            </div>
+                                            <Likertchoice val={answer[index + 14]} id={index + 14} setAnswer={(val) => setIthAnswer(index + 14, val)} labels={['Very Low', 'Low', 'Little Low', 'Neutral', 'Little High', 'High', 'Very High']}/>
+                                        </div>
+                                    ))
+                                }           
+                            </div>
+                        )
                     }
                     <div className='buttonContainer'>
                         {currentPageNum === 11 ? <div/> : <button className='prevBtn' onClick={prev}>Prev</button>}
-                        {currentPageNum === 12 ? 
+                        {currentPageNum === 13 ? 
                             ( checkAllAnswered(answer) ?
-                                <Link to='/end' state={{id: id}} className='nextBtn'>Finish</Link> 
+                                <button onClick={clickLink} className='nextBtn'>Finish</button>
                                 :
                                 <button className='nextBtn disable'>Finish</button>
                             )
-                            : 
-                            ( checkAllAnswered(answer.slice(0,4)) ?
-                                <button className='nextBtn' onClick={next}>Next</button>
+                            : (currentPageNum === 12 ? 
+                                ( checkAllAnswered(answer.slice(0,14)) ?
+                                    <button className='nextBtn' onClick={next}>Next</button>
+                                    :
+                                    <button className='nextBtn disable'>Next</button>
+                                )
                                 :
-                                <button className='nextBtn disable'>Next</button>
+                                ( checkAllAnswered(answer.slice(0,4)) ?
+                                    <button className='nextBtn' onClick={next}>Next</button>
+                                    :
+                                    <button className='nextBtn disable'>Next</button>
+                                )                            
                             )
+
                         }
                     </div>
                 </div>

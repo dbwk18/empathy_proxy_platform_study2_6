@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Topbar } from '../Components/Topbar/Topbar';
 import { Likertchoice } from '../Components/Likertchoice/Likertchoice';
-import tweet_data from '../Data/tweet_data.json';
+import { firebaseDB } from '../firebase';
+import { ref, push } from "firebase/database";
 
+import tweet_data from '../Data/tweet_data.json';
 import './page.css';
 
 
 export const Task2Page = (props) => {
 
     // get user id from previous page
+    const navigate = useNavigate();
     const location = useLocation();
     const { id } = location.state;
 
@@ -20,6 +23,22 @@ export const Task2Page = (props) => {
     function checkAllAnswered (answer) {
         const isAllAnswer = answer.every(item => item.every( itemofitem => itemofitem !== ''));
         return isAllAnswer;
+    }
+
+    const writeUserData = async () => {
+        // create a reference to the user's specific location in the database
+        const userRef = ref(firebaseDB, 'users/' + id);
+    
+        const dataObject = {};
+        for (let i = 0; i < answer.length; i++) {
+            dataObject[`task2_answer_${i < 10 ? '0' + String(i + 1): i + 1}`] = answer[i];
+        }
+        await push(userRef, dataObject);
+    }
+
+    const clickLink = async () => {
+        await writeUserData();
+        navigate('/post', { state: { id } });
     }
 
     function setIthAnswer (i, j, val) {
@@ -105,7 +124,7 @@ export const Task2Page = (props) => {
                         {currentPageNum === 9 ? <div/> : <button className='prevBtn' onClick={prev}>Prev</button>}
                         {currentPageNum === 10 ? 
                             ( checkAllAnswered(answer) ?
-                                <Link to='/post' state={{id: id}} className='nextBtn'>Next</Link> 
+                                <button onClick={clickLink} className='nextBtn'>Next</button>
                                 :
                                 <button className='nextBtn disable'>Next</button>
                             )    

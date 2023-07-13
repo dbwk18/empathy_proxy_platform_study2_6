@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Topbar } from '../Components/Topbar/Topbar';
 import { Multichoice } from '../Components/Multichoice/Multichoice';
-import tweet_data from '../Data/tweet_data.json';
+import { firebaseDB } from '../firebase';
+import { ref, push } from "firebase/database";
 
+import tweet_data from '../Data/tweet_data.json';
 import './page.css';
 
 
 export const Task1Page = (props) => {
 
     // get user id from previous page
+    const navigate = useNavigate();
     const location = useLocation();
     const { id } = location.state;
 
@@ -22,6 +25,23 @@ export const Task1Page = (props) => {
             (item[0] === 'Hate' ? (item[1] !== '' && item[2] !== '') : item[0] !== '')
         );
         return isAllAnswer;
+    }
+
+    const writeUserData = async () => {
+        // create a reference to the user's specific location in the database
+        const userRef = ref(firebaseDB, 'users/' + id);
+    
+        const dataObject = {};
+        for (let i = 0; i < answer.length; i++) {
+            dataObject[`task1_answer_${i < 10 ? '0' + String(i + 1): i + 1}`] = answer[i];
+        }
+
+        await push(userRef, dataObject);
+    }
+
+    const clickLink = async () => {
+        await writeUserData();
+        navigate('/task2', { state: { id } });
     }
 
     const inputHandler = (e) => {
@@ -138,7 +158,7 @@ export const Task1Page = (props) => {
                         {currentPageNum === 7 ? <div/> : <button className='prevBtn' onClick={prev}>Prev</button>}
                         {currentPageNum === 8 ? 
                             ( checkAllAnswered(answer) ?
-                                <Link to='/task2' state={{id: id}} className='nextBtn'>Next</Link> 
+                                <button onClick={clickLink} className='nextBtn'>Next</button>
                                 :
                                 <button className='nextBtn disable'>Next</button>
                             )
