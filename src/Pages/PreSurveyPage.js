@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Topbar } from '../Components/Topbar/Topbar';
 import { Multichoice } from '../Components/Multichoice/Multichoice';
@@ -85,8 +85,7 @@ export const PreSurveyPage = (props) => {
                             <>Before the study, please answer the following questions.</>
                             :
                             <>
-                                Read each statement and check a number that best reflects the degree to which a particular statement relates (or does not relate) to you.
-                                <br/><b>(4-point Likert scale; 1-Strongly disagree, 2-Disagree, 3-Agree, 4-Strongly agree)</b>
+                                Read each statement and check a box that best reflects the degree to which a particular statement relates (or does not relate) to you.
                             </>
                         }
                     </div>
@@ -96,7 +95,7 @@ export const PreSurveyPage = (props) => {
                                 <div className='question'>
                                     1. Do you consider yourself to be a 
                                 </div>
-                                <Multichoice val={answer[0]} setAnswer={(val) => setIthAnswer(0, val)} labels={['strong feminist', 'feminist', 'not a feminist', 'anti-feminist', 'no opinion']} content={null}/>
+                                <Multichoice val={answer[0]} setAnswer={(val) => setIthAnswer(0, val)} labels={['strong feminist', 'feminist', 'neutral', 'anti-feminist', 'strong anti-feminist']} content={null}/>
                             </div>
                             <div className='questionBox'>
                                 <div className='question'>

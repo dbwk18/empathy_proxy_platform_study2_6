@@ -100,12 +100,11 @@ export const PostSurveyPage = (props) => {
                             :
                             (currentPageNum === 12 ?
                                 <>
-                                    Read each statement and check a number that best reflects the degree to which a particular statement relates (or does not relate) to you.
-                                    <br/><b>(4-point Likert scale; 1-Strongly disagree, 2-Disagree, 3-Agree, 4-Strongly agree)</b>
+                                    Read each statement and check a box that best reflects the degree to which a particular statement relates (or does not relate) to you.
                                 </>
                                 :
                                 <>
-                                    Rate the following questions. (7-point Likert scale; 1-Very Low, 7-Very High)
+                                    Rate the following questions.
                                 </>
 
                                 

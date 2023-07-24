@@ -119,7 +119,7 @@ export const Task2Page = (props) => {
                                                 </div>
                                                 <Likertchoice key={data.Tweet + 2} val={answer[index][1]} id={index * 3 + 2} setAnswer={(val) => setIthAnswer(index, 1, val)} labels={['Strongly disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']}/>
                                                 <div className='question'>
-                                                    <b>{index + 1}-c. Action:</b> {data.action}
+                                                    <b>{index + 1}-c. Action:</b> <i>"{data.action}"</i>
                                                 </div>
                                                 <Likertchoice key={data.Tweet + 3} val={answer[index][2]} id={index * 3 + 3} setAnswer={(val) => setIthAnswer(index, 2, val)} labels={['Strongly disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree']}/>
                                             </div>
