@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Topbar } from '../Components/Topbar/Topbar';
 import { Likertchoice } from '../Components/Likertchoice/Likertchoice';
@@ -15,6 +15,28 @@ export const Task2Page = (props) => {
     const navigate = useNavigate();
     const location = useLocation();
     const { id } = location.state;
+
+    // prevent back & refresh button
+    useEffect(() => {
+        const preventGoBack = () => {
+            history.pushState(history.state, null, location.href);
+        }
+        const preventRefresh = (e) => {
+            e.preventDefault();
+            e.returnValue = "";
+        }
+
+        history.pushState(history.state, null, location.href);
+        window.addEventListener('popstate', preventGoBack);
+
+        window.addEventListener("beforeunload", preventRefresh);
+
+        return() => {
+            window.removeEventListener('popstate', preventGoBack);
+            window.removeEventListener('beforeunload', preventRefresh);
+        }
+
+    }, [])
 
     // set the page number
     const [currentPageNum, setCurrentPageNum] = useState(9);
@@ -89,9 +111,7 @@ export const Task2Page = (props) => {
                         <>
                             <div className='explaination'>
                             On a scale of 1 to 5, rate the level of agreement with the statement: 
-                            <b>“The given statements accurately reflect the opinion of the group who support feminist movement/legalization of abortion”</b>
-                            <br/>
-                            1-Strongly Disagree, 2-Disagree, 3-Neutral, 4-Agree, 5-Strongly Agree
+                            <b>“The given statements accurately reflect the opinion of the group who support feminist movement.”</b>
                             </div>
                             <div className='explainBox'>
                                 <b>Definition for each cognitive information processing steps:</b>

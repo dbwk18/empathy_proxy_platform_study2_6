@@ -15,6 +15,28 @@ export const PreSurveyPage = (props) => {
     const location = useLocation();
     const { id } = location.state;
 
+    // prevent back & refresh button
+    useEffect(() => {
+        const preventGoBack = () => {
+            history.pushState(history.state, null, location.href);
+        }
+        const preventRefresh = (e) => {
+            e.preventDefault();
+            e.returnValue = "";
+        }
+
+        history.pushState(history.state, null, location.href);
+        window.addEventListener('popstate', preventGoBack);
+
+        window.addEventListener("beforeunload", preventRefresh);
+
+        return() => {
+            window.removeEventListener('popstate', preventGoBack);
+            window.removeEventListener('beforeunload', preventRefresh);
+        }
+
+    }, [])
+
     // set the page number
     const [currentPageNum, setCurrentPageNum] = useState(5);
  

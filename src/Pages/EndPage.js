@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useLocation } from 'react-router-dom';
 import { Topbar } from '../Components/Topbar/Topbar';
 import './page.css';
@@ -10,12 +10,26 @@ export const EndPage = (props) => {
     const location = useLocation();
     const { id } = location.state;
 
+    // prevent back button
+    useEffect(() => {
+        const preventGoBack = () => {
+            history.pushState(history.state, null, location.href);
+        }
+        history.pushState(history.state, null, location.href);
+        window.addEventListener('popstate', preventGoBack)
+
+        return() => {
+            window.removeEventListener('popstate', preventGoBack)
+        }
+
+    }, [])
+
     return(
         <>
             <Topbar id={id} currentState={6}/>
             <div className='page'>
                 <div>
-                    Thank you
+                    Thank you for participating our study.
                 </div>
                 <div className='footer'/>
             </div>

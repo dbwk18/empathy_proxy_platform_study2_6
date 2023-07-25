@@ -11,6 +11,19 @@ export const IntroPage = (props) => {
     const location = useLocation();
     const { id } = location.state;
 
+    // prevent back button
+    useEffect(() => {
+        const preventGoBack = () => {
+            history.pushState(history.state, null, location.href);
+            // history.go(1);
+            console.log('prevent go back!', history.state)
+        }
+        history.pushState(history.state, null, location.href);
+        window.addEventListener('popstate', preventGoBack)
+
+        return() => window.removeEventListener('popstate', preventGoBack)
+
+    }, [])
 
     // set the page number
     const [currentPageNum, setCurrentPageNum] = useState(2);
