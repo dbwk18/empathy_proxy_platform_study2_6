@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Topbar } from '../Components/Topbar/Topbar';
 import './page.css';
 
@@ -8,7 +8,7 @@ export const EndPage = (props) => {
 
     // get user id from previous page
     const location = useLocation();
-    const history = useHistory();
+    const history = window.history;
 
     const { id } = location.state;
 
