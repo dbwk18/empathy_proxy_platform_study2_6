@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, useHistory, Link } from 'react-router-dom';
 import { Topbar } from '../Components/Topbar/Topbar';
 
 import './page.css';
@@ -9,6 +9,8 @@ export const IntroPage = (props) => {
 
     // get user id from previous page
     const location = useLocation();
+    const history = useHistory();
+
     const { id } = location.state;
 
     // prevent back button

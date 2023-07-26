@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, useHistory } from 'react-router-dom';
 import { Topbar } from '../Components/Topbar/Topbar';
 import { Multichoice } from '../Components/Multichoice/Multichoice';
 import { Likertchoice } from '../Components/Likertchoice/Likertchoice';
@@ -13,6 +13,8 @@ export const PreSurveyPage = (props) => {
     // get user id from previous page
     const navigate = useNavigate();
     const location = useLocation();
+    const history = useHistory();
+    
     const { id } = location.state;
 
     // prevent back & refresh button
