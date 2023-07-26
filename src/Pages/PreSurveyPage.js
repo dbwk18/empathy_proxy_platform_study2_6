@@ -144,7 +144,7 @@ export const PreSurveyPage = (props) => {
                                 <div className='question'>
                                     4. What is the highest degree or level of education you have completed?
                                 </div>
-                                <Multichoice val={answer[4]} setAnswer={(val) => setIthAnswer(4, val)} labels={['Less than a high school', 'High school degree', "Bachelor's degree", "Master's degree", 'Doctorate', 'Other']} content={null}/>
+                                <Multichoice val={answer[4]} setAnswer={(val) => setIthAnswer(4, val)} labels={['Less than a high school', 'High school degree', "Bachelor's degree", "Master's degree", 'Doctorate', 'Other', 'Prefer not to say']} content={null}/>
                             </div>
                         </div>
                     }
