@@ -13,17 +13,25 @@ export const IntroPage = (props) => {
 
     const { id } = location.state;
 
-    // prevent back button
+    // prevent back & refresh button
     useEffect(() => {
         const preventGoBack = () => {
             history.pushState(history.state, null, location.href);
-            // history.go(1);
-            console.log('prevent go back!', history.state)
         }
-        history.pushState(history.state, null, location.href);
-        window.addEventListener('popstate', preventGoBack)
+        const preventRefresh = (e) => {
+            e.preventDefault();
+            e.returnValue = "";
+        }
 
-        return() => window.removeEventListener('popstate', preventGoBack)
+        history.pushState(history.state, null, location.href);
+        window.addEventListener('popstate', preventGoBack);
+
+        window.addEventListener("beforeunload", preventRefresh);
+
+        return() => {
+            window.removeEventListener('popstate', preventGoBack);
+            window.removeEventListener('beforeunload', preventRefresh);
+        }
 
     }, [])
 
