@@ -63,6 +63,9 @@ export const IntroPage = (props) => {
                                     Please note that this survey may contain offensive speech or content, including instances of hate speech.
                                     We understand that this may cause discomfort for some participants. We encourage you to consider this aspect before proceeding.
                                     If at any point you find the content to be distressing, please feel free to discontinue your participation.
+                                </div>
+                                <br/>
+                                <div className='explaination'>
                                     During the study, we will <b>not</b> collect any personal information and all the data collected during the study will be <b>anonymized</b>.
                                     The data collected will be used solely for research purposes. 
                                 </div>
@@ -78,10 +81,11 @@ export const IntroPage = (props) => {
                                 </div>
                                 <br/>
                                 <div className='explaination'>
-                                    During the task, please do <b>not</b> click 'back button' in the browser.
+                                    During the task, please do <b>not</b> click '<b>back / refresh</b> button' in the browser.
                                     If you want to go back to previous page, use <b>'Prev'</b> button in the bottom of the page.
-                                    If you click the 'back button', your data will be initialized.
-                                    Also, you will not be able to move between tasks.
+                                    If you exit the current page, your data will be initialized.
+                                    Also, you will not be able to move between tasks, so please confirm your answers before moving to the next task.
+                                    <br/>
                                     If you have any questions or concerns about the study, please contact <i>dbwk18@kaist.ac.kr</i>. Thank you for considering participating in our study. 
                                 </div>
                                 <br/>

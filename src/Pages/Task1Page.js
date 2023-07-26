@@ -40,11 +40,11 @@ export const Task1Page = (props) => {
 
     // set the page number
     const [currentPageNum, setCurrentPageNum] = useState(7);
-    const [answer, setAnswer] = useState(Array(tweet_data.length).fill(['', '', '', '', '', '']));
+    const [answer, setAnswer] = useState(Array(tweet_data.length).fill(['', '']));
 
     function checkAllAnswered (answer) {
         const isAllAnswer = answer.every(item => 
-            (item[0] !== '' && item[2] !== '' && item[3] !== '' && item[4] !== '' && item[5] !== '') 
+            item[0] !== '' 
             && (item[0] === 'Non-hate' ? (item[1] !== '') : true)
         );
         return isAllAnswer;
@@ -106,7 +106,7 @@ export const Task1Page = (props) => {
                     {currentPageNum === 7 ?
                         <>
                             <div className='explaination'>
-                                In <b>task 1</b>, your goal is to detect hate speech in the given tweets and provide annotations accordingly.
+                                In <b>task 1</b>, your goal is to detect <b>hate speech targeting the feminist movement</b> in the given tweets and provide annotations accordingly.
                                 Please carefully read the instructions below to complete the annotations.
                             </div>
                             <div className='explainBox'>
@@ -115,39 +115,22 @@ export const Task1Page = (props) => {
                                 <b> • &nbsp;Hate:</b> If a tweet exhibits hate speech, select this annotation. Hate speech refers to any language, gesture, or expression that promotes violence, discrimination, or hostility against individuals or groups based on attributes such as race, ethnicity, gender, religion, sexual orientation, or other protected characteristics. 
                                 <br/>
                                 <b> • &nbsp;Non-hate:</b> If a tweet does not contain hate speech, select this annotation. Tweets in this category should be free from any form of hate speech or offensive language.
-                                <br/>
-                                <b> • &nbsp;Neutral:</b> If a tweet does not express hate or exhibit any clear sentiment, select this annotation. Neutral tweets typically present information, facts, or general statements without expressing any strong emotion or bias.
-                                <br/>
-                                <b> • &nbsp;Skip:</b> If you are not confident in which label to assign, select this annotation.
                             </div>
                             <div className='explaination'>
-                                If you select the <b>“Non-hate”</b>, you will be provided with an option to check whether the tweet belongs to the case of <b>"Advocate"</b> or not.
-                            </div>
-                            <div className='explainBox'>
-                                <b> • &nbsp;Advocate:</b> Supports or recommends a particular cause or policy (In this case, <i>feminist movement</i>.)
-                                <br/>
-                            </div>
-                            <div className='explaination'>
-                                For each selected annotation, please provide a brief explanation or reason why you believe the tweet falls into that specific category.
-                                Also, answer the following question according to the instructions provided. 
+                                If you select the <b>“Non-hate”</b>, you will be provided with an option to check whether the tweet belongs to the case of <b>"Advocate"</b> of feminist movement or not.
                             </div>
                         </>
                     : 
                         <>
+                            <div className='explaination'>
+                                Please classify the following tweet as hate speech or non-hate speech to the <b>feminist movement</b>.
+                            </div>
                             <div className='explainBox'>
                                 <b>Annotation definitions:</b>
                                 <br/>
                                 <b> • &nbsp;Hate:</b> If a tweet exhibits hate speech, select this annotation. Hate speech refers to any language, gesture, or expression that promotes violence, discrimination, or hostility against individuals or groups based on attributes such as race, ethnicity, gender, religion, sexual orientation, or other protected characteristics. 
                                 <br/>
                                 <b> • &nbsp;Non-hate:</b> If a tweet does not contain hate speech, select this annotation. Tweets in this category should be free from any form of hate speech or offensive language.
-                                <br/>
-                                <b> • &nbsp;Neutral:</b> If a tweet does not express hate or exhibit any clear sentiment, select this annotation. Neutral tweets typically present information, facts, or general statements without expressing any strong emotion or bias.
-                                <br/>
-                                <b> • &nbsp;Skip:</b> If you are not confident in which label to assign, select this annotation.
-                            </div>
-                            <div className='explainBox'>
-                                <b> • &nbsp;Advocate:</b> Supports or recommends a particular cause or policy (In this case, <i>feminist movement</i>.)
-                                <br/>
                             </div>
                             <div className='questionsContainer'>
                                 {
@@ -156,37 +139,14 @@ export const Task1Page = (props) => {
                                             <div className='question'>
                                             <b>{index + 1}. Tweet: "</b><i>{data.Tweet}</i><b>"</b>
                                             </div>
-                                            <Multichoice key={index} val={answer[index][0]} setAnswer={(val) => setIthAnswer(index, 0, val)} labels={['Hate', 'Non-hate', 'Neutral', 'Skip']} />
+                                            <Multichoice key={index} val={answer[index][0]} setAnswer={(val) => setIthAnswer(index, 0, val)} labels={['Hate', 'Non-hate']} />
 
                                             {answer[index][0] === 'Non-hate' ? 
                                                 <div className='extraQuestionContainer'>
                                                     <div className='question'>
-                                                        <b>{index + 1}*.</b> Do you think the tweet belongs to the case of <b>"Advocate"</b>?
+                                                        <b>{index + 1}-a.</b> Do you think the tweet belongs to the case of <b>"Advocate"</b>?
                                                     </div>
                                                     <Multichoice val={answer[index][1]} setAnswer={(val) => setIthAnswer(index, 1, val)} labels={['Yes', 'No']} />
-                                                </div>
-                                                :
-                                                null
-                                            }
-
-                                            {answer[index][0] ?
-                                                <div className='extraQuestionContainer'>
-                                                    <div className='question'>
-                                                        <b>{index + 1}-a.</b> Reason why it falls to selected category:
-                                                    </div>
-                                                    <input className='shortform' name={index} id={2} value={answer[index][2]} onChange={inputHandler}></input>
-                                                    <div className='question'>
-                                                        <b>{index + 1}-b.</b> What’s the <b>tone and sentiment</b> of the tweet?
-                                                    </div>
-                                                    <input className='shortform' name={index} id={3} value={answer[index][3]} onChange={inputHandler}></input>
-                                                    <div className='question'>
-                                                        <b>{index + 1}-c.</b> What’s your <b>interpretation</b> of the tweet?
-                                                    </div>
-                                                    <input className='shortform' name={index} id={4} value={answer[index][4]} onChange={inputHandler}></input>
-                                                    <div className='question'>
-                                                        <b>{index + 1}-d.</b> If you retweet, what would be your <b>response</b> to the tweet? 
-                                                    </div>
-                                                    <input className='shortform' name={index} id={5} value={answer[index][5]} onChange={inputHandler}></input>
                                                 </div>
                                                 :
                                                 null

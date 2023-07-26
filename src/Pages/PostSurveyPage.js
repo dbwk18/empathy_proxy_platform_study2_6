@@ -63,7 +63,7 @@ export const PostSurveyPage = (props) => {
         'How insecure, discouraged, irritated, stressed, and annoyed were you?'
     ];
 
-    const [answer, setAnswer] = useState(Array(20).fill(''));
+    const [answer, setAnswer] = useState(Array(9).fill(''));
 
     function checkAllAnswered (answer) {
         const isAllAnswer = answer.every(item => item !== '');
@@ -120,78 +120,49 @@ export const PostSurveyPage = (props) => {
                                 Please take a moment to answer the following questions.
                             </>
                             :
-                            (currentPageNum === 12 ?
-                                <>
-                                    Read each statement and check a box that best reflects the degree to which a particular statement relates (or does not relate) to you.
-                                </>
-                                :
-                                <>
-                                    Rate the following questions.
-                                </>
-
-                                
-                            )
+                            <>
+                                Rate the following questions.
+                            </>
                         }
                     </div>
                     {currentPageNum === 11 ?
                         <div className='questionsContainer'>
                             <div className='questionBox'>
                                 <div className='question'>
-                                    <b>1.</b> Do you think the given statements of <i>perception, cognition, and action</i> reflected your core <b>values</b> toward the 'Feminist Movement' in general?
+                                    <b>1.</b> If we provide the given statements of perception, cognition, and action to general people, do you think it would help people understand the value of feminist movement?
                                 </div>
-                                <Multichoice val={answer[0]} setAnswer={(val) => setIthAnswer(0, val)} labels={['Not Strongly Reflected', 'Not Reflected', 'Reflected', 'Strongly Reflected']}/>
+                                <Multichoice val={answer[0]} setAnswer={(val) => setIthAnswer(0, val)} labels={['Very Not Helpful', 'Not Helpful', 'Neutral', 'Helpful', 'Very Helpful']}/>
                                 <div className='extraQuestionContainer'>
                                     <div className='question'>
-                                        <b>1-a.</b> At what point did you think it reflected or not reflected your value?
+                                        <b>1-a.</b> (Optional) Why do you think so?
                                     </div>
                                     <input className='shortform' name={1} value={answer[1]} onChange={inputHandler}/>
                                 </div>
                             </div>
                             <div className='questionBox'>
                                 <div className='question'>
-                                    <b>2.</b> Do you think the given statements of <i>perception, cognition, and action</i> serve as a proxy that <b>empathizes</b> with your perspective? 
+                                    <b>2.</b>  (Optional) Feel free to leave any feedbacks regarding our survey.
                                 </div>
-                                <Multichoice val={answer[2]} setAnswer={(val) => setIthAnswer(2, val)} labels={['Not Strongly Empathized', 'Not Empathized', 'Empathized', 'Strongly Empathized']}/>
-                                <div className='extraQuestionContainer'>
-                                    <div className='question'>
-                                        <b>2-a.</b> At what point did you think it empathized or not empathized with your perspective?
-                                    </div>
-                                    <input className='shortform' name={3} value={answer[3]} onChange={inputHandler}/>
-                                </div>
+                                <input className='shortform' name={2} value={answer[2]} onChange={inputHandler}/>
                             </div>
                         </div>
                         :
-                        ( currentPageNum === 12 ?
-                            <div className='questionsContainer'>
-                                {
-                                    questions_qcae.map((question, index) => (
-                                        <div className= 'questionBox' key={question}>
-                                            <div className='question'>
-                                                {index+1}. {question}
-                                            </div>
-                                            <Likertchoice val={answer[index + 4]} id={index + 4} setAnswer={(val) => setIthAnswer(index + 4, val)} labels={['Strongly disagree', 'Disagree', 'Agree', 'Strongly Agree']} content={null}/>
+                        <div className='questionsContainer'>
+                            {
+                                questions.map((question, index) => (
+                                    <div className= 'questionBox' key={question}>
+                                        <div className='question'>
+                                            {index+1}. {question}
                                         </div>
-                                    ))
-                                }           
-                            </div>
-                            :
-                            <div className='questionsContainer'>
-                                {
-                                    questions.map((question, index) => (
-                                        <div className= 'questionBox' key={question}>
-                                            <div className='question'>
-                                                {index+1}. {question}
-                                            </div>
-                                            <Likertchoice val={answer[index + 14]} id={index + 14} setAnswer={(val) => setIthAnswer(index + 14, val)} labels={['Very Low', 'Low', 'Little Low', 'Neutral', 'Little High', 'High', 'Very High']}/>
-                                        </div>
-                                    ))
-                                }           
-                            </div>
-                        )
+                                        <Likertchoice val={answer[index + 3]} id={index + 3} setAnswer={(val) => setIthAnswer(index + 3, val)} labels={['Very Low', 'Low', 'Little Low', 'Neutral', 'Little High', 'High', 'Very High']}/>
+                                    </div>
+                                ))
+                            }           
+                        </div>
                     }
 
                     {
-                        currentPageNum === 13 &&
+                        currentPageNum === 12 &&
                         <div className='explaination'>
                             Please note that once you proceed to the <b>next</b> page, you will not be able to come back to <b>Post-Survey</b> section. 
                             Make sure to carefully review and complete all the answers on this page before proceeding.
@@ -200,26 +171,18 @@ export const PostSurveyPage = (props) => {
 
                     <div className='buttonContainer'>
                         {currentPageNum === 11 ? <div/> : <button className='prevBtn' onClick={prev}>Prev</button>}
-                        {currentPageNum === 13 ? 
+                        {currentPageNum === 12 ? 
                             ( checkAllAnswered(answer) ?
                                 <button onClick={clickLink} className='nextBtn'>Finish</button>
                                 :
                                 <button className='nextBtn disable'>Finish</button>
                             )
-                            : (currentPageNum === 12 ? 
-                                ( checkAllAnswered(answer.slice(0,14)) ?
-                                    <button className='nextBtn' onClick={next}>Next</button>
-                                    :
-                                    <button className='nextBtn disable'>Next</button>
-                                )
+                            :
+                            ( checkAllAnswered(answer.slice(0,1)) ?
+                                <button className='nextBtn' onClick={next}>Next</button>
                                 :
-                                ( checkAllAnswered(answer.slice(0,4)) ?
-                                    <button className='nextBtn' onClick={next}>Next</button>
-                                    :
-                                    <button className='nextBtn disable'>Next</button>
-                                )                            
-                            )
-
+                                <button className='nextBtn disable'>Next</button>
+                            )      
                         }
                     </div>
                 </div>

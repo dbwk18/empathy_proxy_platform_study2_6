@@ -29,7 +29,7 @@ export const EndPage = (props) => {
             <Topbar id={id} currentState={6}/>
             <div className='page'>
                 <div>
-                    Thank you for participating our study.
+                    <b>Thank you for participating our study.</b>
                 </div>
                 <div className='footer'/>
             </div>

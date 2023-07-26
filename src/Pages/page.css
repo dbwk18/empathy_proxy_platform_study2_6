@@ -183,3 +183,11 @@
 .loginBtn:hover {
     background-color: #0473e2;
 }
+
+.divider {
+    width: 95%;
+    height: 2px;
+    border-radius: 16px;
+    background-color:  #888888;
+    opacity: 50%;
+}
