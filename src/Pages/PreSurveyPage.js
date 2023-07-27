@@ -4,7 +4,7 @@ import { Topbar } from '../Components/Topbar/Topbar';
 import { Multichoice } from '../Components/Multichoice/Multichoice';
 import { Likertchoice } from '../Components/Likertchoice/Likertchoice';
 import { firebaseDB } from '../firebase';
-import { ref, push } from "firebase/database";
+import { ref, push, set, get } from "firebase/database";
 import './page.css';
 
 
@@ -63,13 +63,29 @@ export const PreSurveyPage = (props) => {
     }
 
     const writeUserData = async () => {
+
+        //
+        const userTotalRef = ref(firebaseDB, 'users/');
+        let numOfUsers = 0;
+
+        await get(userTotalRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                numOfUsers = Object.keys(snapshot.val()).length;
+            } else {
+                console.log("No data available");
+            }
+          }).catch((error) => {
+            console.error(error);
+        });
+
         // create a reference to the user's specific location in the database
         const userRef = ref(firebaseDB, 'users/' + id);
-    
+        
         const dataObject = {};
         for (let i = 0; i < answer.length; i++) {
             dataObject[`pre_answer_${i < 10 ? '0' + String(i + 1): i + 1}`] = answer[i];
         }
+        await set(userRef, {user_num: numOfUsers});
         await push(userRef, dataObject);
     }
 

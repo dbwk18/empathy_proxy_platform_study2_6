@@ -3,9 +3,15 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Topbar } from '../Components/Topbar/Topbar';
 import { Likertchoice } from '../Components/Likertchoice/Likertchoice';
 import { firebaseDB } from '../firebase';
-import { ref, push } from "firebase/database";
+import { ref, push, get } from "firebase/database";
 
-import tweet_data from '../Data/tweet_data.json';
+import feminist_sample_1 from '../Data/Pilot/sample_feminist_150(1).json';
+import feminist_sample_2 from '../Data/Pilot/sample_feminist_150(2).json';
+import feminist_sample_3 from '../Data/Pilot/sample_feminist_150(3).json';
+import feminist_sample_4 from '../Data/Pilot/sample_feminist_150(4).json';
+import feminist_sample_5 from '../Data/Pilot/sample_feminist_150(5).json';
+import feminist_sample_6 from '../Data/Pilot/sample_feminist_150(6).json';
+
 import './page.css';
 
 
@@ -17,6 +23,7 @@ export const Task2Page = (props) => {
     const history = window.history;
 
     const { id } = location.state;
+    const [tweetData, setTweetData] = useState([]);
 
     // prevent back & refresh button
     useEffect(() => {
@@ -32,6 +39,7 @@ export const Task2Page = (props) => {
         window.addEventListener('popstate', preventGoBack);
 
         window.addEventListener("beforeunload", preventRefresh);
+        getUserNum();
 
         return() => {
             window.removeEventListener('popstate', preventGoBack);
@@ -42,13 +50,58 @@ export const Task2Page = (props) => {
 
     // set the page number
     const [currentPageNum, setCurrentPageNum] = useState(9);
-    const [answer, setAnswer] = useState(Array(tweet_data.length).fill(['', '', '', '', '', '', '']));
-    
+    const [answer, setAnswer] = useState([]);
+
     function checkAllAnswered (answer) {
         const isAllAnswer = answer.every(item => 
             item[0] !== '' && item[1] !== '' && item[2] !== '' && item[3] !== '' && item[5] !== ''
         );
         return isAllAnswer;
+    }
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+        }
+        return array;
+    }
+
+    const getUserNum = async () => {
+        const userRef = ref(firebaseDB, 'users/' + id);
+        await get(userRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                const userNum = snapshot.val().user_num;
+                if(userNum % 6 === 0) {
+                    setTweetData(shuffleArray(feminist_sample_1));
+                    setAnswer(Array(feminist_sample_1.length).fill(['', '', '', '', '', '', '']));
+                }
+                else if (userNum % 6 === 1) {
+                    setTweetData(shuffleArray(feminist_sample_2));
+                    setAnswer(Array(feminist_sample_2.length).fill(['', '', '', '', '', '', '']));
+                }
+                else if (userNum % 6 === 2) {
+                    setTweetData(shuffleArray(feminist_sample_3));
+                    setAnswer(Array(feminist_sample_3.length).fill(['', '', '', '', '', '', '']));
+                }
+                else if (userNum % 6 === 3) {
+                    setTweetData(shuffleArray(feminist_sample_4));
+                    setAnswer(Array(feminist_sample_4.length).fill(['', '', '', '', '', '', '']));
+                }
+                else if (userNum % 6 === 4) {
+                    setTweetData(shuffleArray(feminist_sample_5));
+                    setAnswer(Array(feminist_sample_5.length).fill(['', '', '', '', '', '', '']));
+                }
+                else {
+                    setTweetData(shuffleArray(feminist_sample_6));
+                    setAnswer(Array(feminist_sample_6.length).fill(['', '', '', '', '', '', '']));
+                }
+            } else {
+                console.log("No data available");
+            }
+          }).catch((error) => {
+            console.error(error);
+        });
     }
 
     const writeUserData = async () => {
@@ -57,7 +110,8 @@ export const Task2Page = (props) => {
     
         const dataObject = {};
         for (let i = 0; i < answer.length; i++) {
-            dataObject[`task2_answer_${i < 10 ? '0' + String(i + 1): i + 1}`] = answer[i];
+            const tweetId = tweetData[i]['ID'].toString().padStart(4, '0');
+            dataObject[`task2_answer_${tweetId}`] = answer[i];
         }
         await push(userRef, dataObject);
     }
@@ -134,7 +188,7 @@ export const Task2Page = (props) => {
                             </div>
                             <div className='questionsContainer'>
                                 {
-                                    tweet_data.map((data, index) => (
+                                    tweetData.map((data, index) => (
                                         <div className='questionBox' key={index}>
                                             <div className='question tweet'>
                                                 <b>{index + 1}. Tweet: "</b><i>{data.Tweet}</i><b>"</b>
