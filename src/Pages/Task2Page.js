@@ -210,7 +210,7 @@ export const Task2Page = (props) => {
                                                 <div className='divider'/>
                                                 <br/>
                                                 <div className='question'>
-                                                    <b>{index + 1}-d.</b> How believable do you find the LLM generated perception, cognition, and action?
+                                                    <b>{index + 1}-d.</b> How believable do you find the above LLM generated perception, cognition, and action?
                                                 </div>
                                                 <Likertchoice key={data.Tweet + 4} val={answer[index][3]} id={index * 7 + 4} setAnswer={(val) => setIthAnswer(index, 3, val)} labels={['Strongly Not Believable', 'Not Believable', 'Neutral', 'Believable', 'Strongly Belivable']}/>
                                                 {
@@ -225,7 +225,7 @@ export const Task2Page = (props) => {
                                                     <></>
                                                 }
                                                 <div className='question'>
-                                                    <b>{index + 1}-e.</b> How accurately does the perception, cognition, and action are represented compared to your own perspective?
+                                                    <b>{index + 1}-e.</b> How accurately does the above LLM generated perception, cognition, and action are represented compared to your own perspective?
                                                 </div>
                                                 <Likertchoice key={data.Tweet + 5} val={answer[index][5]} id={index * 7 + 6} setAnswer={(val) => setIthAnswer(index, 5, val)} labels={['Very Not Accurate', 'Not Accurate', 'Neutral', 'Accurtate', 'Very Accurate']}/>
                                                 {

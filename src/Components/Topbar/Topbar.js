@@ -8,7 +8,7 @@ export const Topbar = (props) => {
         <>
             <nav className='topbar'>
                 <div className='worker'>
-                    Email Address: {props.id}
+                    Prolific ID: {props.id}
                 </div>
             </nav>
             <div className='progressbarContainer'>
