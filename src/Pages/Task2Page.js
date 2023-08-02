@@ -54,7 +54,7 @@ export const Task2Page = (props) => {
 
     function checkAllAnswered (answer) {
         const isAllAnswer = answer.every(item => 
-            item[0] !== '' && item[1] !== '' && item[2] !== '' && item[3] !== '' && item[5] !== ''
+            item[0] !== '' && item[1] !== '' && item[2] !== '' && item[3] !== '' && item[4] !== ''
         );
         return isAllAnswer;
     }
@@ -210,35 +210,19 @@ export const Task2Page = (props) => {
                                                 <div className='divider'/>
                                                 <br/>
                                                 <div className='question'>
-                                                    <b>{index + 1}-d.</b> How believable do you find the above LLM generated perception, cognition, and action?
+                                                    <b>{index + 1}-d.</b> How believable do you find the above perception, cognition, and action?
                                                 </div>
                                                 <Likertchoice key={data.Tweet + 4} val={answer[index][3]} id={index * 7 + 4} setAnswer={(val) => setIthAnswer(index, 3, val)} labels={['Strongly Not Believable', 'Not Believable', 'Neutral', 'Believable', 'Strongly Belivable']}/>
-                                                {
-                                                    ['Strongly Not Believable', 'Not Believable'].includes(answer[index][3])? 
-                                                    <>
-                                                        <div className='question'>
-                                                            <b>{index + 1}-d*.</b> (Optional) Reason why it is <b>not</b> believable:
-                                                        </div>
-                                                        <input className='shortform' name={index} id={4} value={answer[index][4]} onChange={inputHandler}></input>
-                                                    </>
-                                                    :
-                                                    <></>
-                                                }
                                                 <div className='question'>
-                                                    <b>{index + 1}-e.</b> How accurately does the above LLM generated perception, cognition, and action are represented compared to your own perspective?
+                                                    <b>{index + 1}-e.</b> How well does the above perception, cognition, and action represent the  perspectives of people who support feminist?
                                                 </div>
-                                                <Likertchoice key={data.Tweet + 5} val={answer[index][5]} id={index * 7 + 6} setAnswer={(val) => setIthAnswer(index, 5, val)} labels={['Very Not Accurate', 'Not Accurate', 'Neutral', 'Accurtate', 'Very Accurate']}/>
-                                                {
-                                                    ['Very Not Accurate', 'Not Accurate'].includes(answer[index][5])? 
-                                                    <>
-                                                        <div className='question'>
-                                                            <b>{index + 1}-e*.</b> (Optional) Reason why it is <b>not</b> accurate:
-                                                        </div>
-                                                        <input className='shortform' name={index} id={6} value={answer[index][6]} onChange={inputHandler}></input>
-                                                    </>
-                                                    :
-                                                    <></>
-                                                }
+                                                <Likertchoice key={data.Tweet + 5} val={answer[index][4]} id={index * 7 + 5} setAnswer={(val) => setIthAnswer(index, 4, val)} labels={['Strongly Not Representative', 'Not Representative', 'Neutral', 'Representative', 'Strongly Representative']}/>
+                                                <div className='question'>
+                                                    <b>{index + 1}-e*.</b> (Optional) Why do you think it’s well represented or not?
+                                                </div>
+                                                LLM Related: <input className='shortform' name={index} id={5} value={answer[index][5]} onChange={inputHandler}></input>
+                                                Content Related: <input className='shortform' name={index} id={6} value={answer[index][6]} onChange={inputHandler}></input>
+                                                 
                                             </div>
                                         </div>
                                     ))
