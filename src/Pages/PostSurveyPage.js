@@ -4,7 +4,7 @@ import { Topbar } from '../Components/Topbar/Topbar';
 import { Multichoice } from '../Components/Multichoice/Multichoice';
 import { Likertchoice } from '../Components/Likertchoice/Likertchoice';
 import { firebaseDB } from '../firebase';
-import { ref, push } from "firebase/database";
+import { ref, push, set, get } from "firebase/database";
 
 import './page.css';
 
@@ -75,12 +75,30 @@ export const PostSurveyPage = (props) => {
     const writeUserData = async () => {
         // create a reference to the user's specific location in the database
         const userRef = ref(firebaseDB, 'users/' + id);
+        const confirmRef = ref(firebaseDB, 'manage/isConfirmed');
     
-        const dataObject = {};
+        let dataObject = {};
         for (let i = 0; i < answer.length; i++) {
             dataObject[`post_answer_${i < 9 ? '0' + String(i + 1): i + 1}`] = answer[i];
         }
         await push(userRef, dataObject);
+
+        let confirmedBox = [];
+        await get(confirmRef).then((snapshot) => {
+            if (snapshot.exists()) {
+                confirmedBox = snapshot.val();
+                get(userRef).then((snapshot) => {
+                    if (snapshot.exists()) {
+                        const userNum = snapshot.val().user_num;
+                        confirmedBox[userNum] = 1;
+                        set(confirmRef, confirmedBox);
+                    }}).catch((error)=>{
+                        console.log("No data available");
+                });
+            }
+        }).catch((error)=>{
+            console.log("No data available");
+        }); 
     }
 
     const clickLink = async () => {

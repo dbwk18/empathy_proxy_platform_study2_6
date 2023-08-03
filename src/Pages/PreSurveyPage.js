@@ -65,12 +65,43 @@ export const PreSurveyPage = (props) => {
     const writeUserData = async () => {
 
         //
-        const userTotalRef = ref(firebaseDB, 'users/');
-        let numOfUsers = 0;
+        // const userTotalRef = ref(firebaseDB, 'users/');
+        const pointerRef = ref(firebaseDB, 'manage/pointer');
+        let numOfUsers = -1;
 
-        await get(userTotalRef).then((snapshot) => {
+        await get(pointerRef).then((snapshot) => {
             if (snapshot.exists()) {
-                numOfUsers = Object.keys(snapshot.val()).length;
+                numOfUsers = snapshot.val();
+                let updatePointer = numOfUsers + 1;
+                const confirmRef = ref(firebaseDB, 'manage/isConfirmed');
+                let confirmedBox = [];
+
+                get(confirmRef).then((snapshot) => {
+                    if (snapshot.exists()) {
+                        confirmedBox = snapshot.val();
+                        while (true) {
+                            console.log(updatePointer);
+                            if (updatePointer >= 30) {
+                                updatePointer = -1;
+                                const isAllConfirmed = confirmedBox.every(val => val === 1);
+                                if(isAllConfirmed) {
+                                    set(confirmRef, new Array(30).fill(0));
+                                    updatePointer = 0;
+                                    set(pointerRef, updatePointer);
+                                    break;
+                                }
+                            }
+                            if(updatePointer !== -1 & confirmedBox[updatePointer] === 0) {
+                                set(pointerRef, updatePointer);
+                                break;
+                            }
+                            updatePointer += 1;
+                        }
+
+                    }
+                }).catch((error)=>{
+                    console.log("No data available");
+                }); 
             } else {
                 console.log("No data available");
             }
@@ -78,7 +109,6 @@ export const PreSurveyPage = (props) => {
             console.error(error);
         });
 
-        // create a reference to the user's specific location in the database
         const userRef = ref(firebaseDB, 'users/' + id);
         
         const dataObject = {};
