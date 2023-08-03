@@ -4,14 +4,14 @@ import { getDatabase } from "firebase/database";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDnIfibtvMgmk2VNwVRJUksMhjcQHOBj_I",
-  authDomain: "empathy-proxy-platform-1.firebaseapp.com",
-  databaseURL: "https://empathy-proxy-platform-1-default-rtdb.firebaseio.com",
-  projectId: "empathy-proxy-platform-1",
-  storageBucket: "empathy-proxy-platform-1.appspot.com",
-  messagingSenderId: "1006599042423",
-  appId: "1:1006599042423:web:cb6679adb0fd6487f25d72",
-  measurementId: "G-T2V4LHGJNJ"
+  apiKey: "AIzaSyBoE4Pyv86Gm3X7fzIWENa-QD4stIlQMtw",
+  authDomain: "empathetic-proxy-s1-femi-c0b3e.firebaseapp.com",
+  databaseURL: "https://empathetic-proxy-s1-femi-c0b3e-default-rtdb.firebaseio.com/",
+  projectId: "empathetic-proxy-s1-femi-c0b3e",
+  storageBucket: "empathetic-proxy-s1-femi-c0b3e.appspot.com",
+  messagingSenderId: "247897634993",
+  appId: "1:247897634993:web:69dd4b2fe7c71746314a90",
+  measurementId: "G-FLJB50FGKE"
 };
 
 // Initialize Firebase
