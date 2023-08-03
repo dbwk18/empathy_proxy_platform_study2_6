@@ -5,12 +5,12 @@ import { Likertchoice } from '../Components/Likertchoice/Likertchoice';
 import { firebaseDB } from '../firebase';
 import { ref, push, get } from "firebase/database";
 
-import feminist_sample_1 from '../Data/Pilot/sample_feminist_150(1).json';
-import feminist_sample_2 from '../Data/Pilot/sample_feminist_150(2).json';
-import feminist_sample_3 from '../Data/Pilot/sample_feminist_150(3).json';
-import feminist_sample_4 from '../Data/Pilot/sample_feminist_150(4).json';
-import feminist_sample_5 from '../Data/Pilot/sample_feminist_150(5).json';
-import feminist_sample_6 from '../Data/Pilot/sample_feminist_150(6).json';
+import abortion_sample_1 from '../Data/Study1/sample_abortion_200(1).json';
+import abortion_sample_2 from '../Data/Study1/sample_abortion_200(2).json';
+import abortion_sample_3 from '../Data/Study1/sample_abortion_200(3).json';
+import abortion_sample_4 from '../Data/Study1/sample_abortion_200(4).json';
+import abortion_sample_5 from '../Data/Study1/sample_abortion_200(5).json';
+import abortion_sample_6 from '../Data/Study1/sample_abortion_200(6).json';
 
 import './page.css';
 
@@ -73,28 +73,28 @@ export const Task2Page = (props) => {
             if (snapshot.exists()) {
                 const userNum = snapshot.val().user_num;
                 if(userNum % 6 === 0) {
-                    setTweetData(shuffleArray(feminist_sample_1));
-                    setAnswer(Array(feminist_sample_1.length).fill(['', '', '', '', '', '', '']));
+                    setTweetData(shuffleArray(abortion_sample_1));
+                    setAnswer(Array(abortion_sample_1.length).fill(['', '', '', '', '', '', '']));
                 }
                 else if (userNum % 6 === 1) {
-                    setTweetData(shuffleArray(feminist_sample_2));
-                    setAnswer(Array(feminist_sample_2.length).fill(['', '', '', '', '', '', '']));
+                    setTweetData(shuffleArray(abortion_sample_2));
+                    setAnswer(Array(abortion_sample_2.length).fill(['', '', '', '', '', '', '']));
                 }
                 else if (userNum % 6 === 2) {
-                    setTweetData(shuffleArray(feminist_sample_3));
-                    setAnswer(Array(feminist_sample_3.length).fill(['', '', '', '', '', '', '']));
+                    setTweetData(shuffleArray(abortion_sample_3));
+                    setAnswer(Array(abortion_sample_3.length).fill(['', '', '', '', '', '', '']));
                 }
                 else if (userNum % 6 === 3) {
-                    setTweetData(shuffleArray(feminist_sample_4));
-                    setAnswer(Array(feminist_sample_4.length).fill(['', '', '', '', '', '', '']));
+                    setTweetData(shuffleArray(abortion_sample_4));
+                    setAnswer(Array(abortion_sample_4.length).fill(['', '', '', '', '', '', '']));
                 }
                 else if (userNum % 6 === 4) {
-                    setTweetData(shuffleArray(feminist_sample_5));
-                    setAnswer(Array(feminist_sample_5.length).fill(['', '', '', '', '', '', '']));
+                    setTweetData(shuffleArray(abortion_sample_5));
+                    setAnswer(Array(abortion_sample_5.length).fill(['', '', '', '', '', '', '']));
                 }
                 else {
-                    setTweetData(shuffleArray(feminist_sample_6));
-                    setAnswer(Array(feminist_sample_6.length).fill(['', '', '', '', '', '', '']));
+                    setTweetData(shuffleArray(abortion_sample_6));
+                    setAnswer(Array(abortion_sample_6.length).fill(['', '', '', '', '', '', '']));
                 }
             } else {
                 console.log("No data available");
@@ -175,7 +175,7 @@ export const Task2Page = (props) => {
                         <>
                             <div className='explaination'>
                             On a scale of 1 to 5, rate the level of agreement with the statement: 
-                            <b>“The given statements of perception/cognition/action accurately reflect the opinion of the group who support feminist movement.”</b>
+                            <b>“The given statements of perception/cognition/action accurately reflect the opinion of the group who support legalization of abortion.”</b>
                             </div>
                             <div className='explainBox'>
                                 <b>Definition for each cognitive information processing steps:</b>
@@ -194,7 +194,7 @@ export const Task2Page = (props) => {
                                                 <b>{index + 1}. Tweet: "</b><i>{data.Tweet}</i><b>"</b>
                                             </div>
                                             <div className='extraQuestionContainer'>
-                                                <div style={{color: "#888888"}}><i>* "The person" = "People who support the feminist movement"</i></div>
+                                                <div style={{color: "#888888"}}><i>* "The person" = "People who support the legalization of abortion"</i></div>
                                                 <div className='question'>
                                                     <b>{index + 1}-a. Perception:</b> {data.perception}
                                                 </div>
@@ -214,7 +214,7 @@ export const Task2Page = (props) => {
                                                 </div>
                                                 <Likertchoice key={data.Tweet + 4} val={answer[index][3]} id={index * 7 + 4} setAnswer={(val) => setIthAnswer(index, 3, val)} labels={['Strongly Not Believable', 'Not Believable', 'Neutral', 'Believable', 'Strongly Belivable']}/>
                                                 <div className='question'>
-                                                    <b>{index + 1}-e.</b> How well does the above perception, cognition, and action represent the  perspectives of people who support feminist?
+                                                    <b>{index + 1}-e.</b> How well does the above perception, cognition, and action represent the  perspectives of people who support legalization of abortion?
                                                 </div>
                                                 <Likertchoice key={data.Tweet + 5} val={answer[index][4]} id={index * 7 + 5} setAnswer={(val) => setIthAnswer(index, 4, val)} labels={['Strongly Not Representative', 'Not Representative', 'Neutral', 'Representative', 'Strongly Representative']}/>
                                                 <div className='question'>

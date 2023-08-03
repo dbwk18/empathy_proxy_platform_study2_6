@@ -5,12 +5,12 @@ import { Multichoice } from '../Components/Multichoice/Multichoice';
 import { firebaseDB } from '../firebase';
 import { ref, push, get } from "firebase/database";
 
-import feminist_sample_1 from '../Data/Pilot/sample_feminist_150(1).json';
-import feminist_sample_2 from '../Data/Pilot/sample_feminist_150(2).json';
-import feminist_sample_3 from '../Data/Pilot/sample_feminist_150(3).json';
-import feminist_sample_4 from '../Data/Pilot/sample_feminist_150(4).json';
-import feminist_sample_5 from '../Data/Pilot/sample_feminist_150(5).json';
-import feminist_sample_6 from '../Data/Pilot/sample_feminist_150(6).json';
+import abortion_sample_1 from '../Data/Study1/sample_abortion_200(1).json';
+import abortion_sample_2 from '../Data/Study1/sample_abortion_200(2).json';
+import abortion_sample_3 from '../Data/Study1/sample_abortion_200(3).json';
+import abortion_sample_4 from '../Data/Study1/sample_abortion_200(4).json';
+import abortion_sample_5 from '../Data/Study1/sample_abortion_200(5).json';
+import abortion_sample_6 from '../Data/Study1/sample_abortion_200(6).json';
 
 import './page.css';
 
@@ -73,28 +73,28 @@ export const Task1Page = (props) => {
             if (snapshot.exists()) {
                 const userNum = snapshot.val().user_num;
                 if(userNum % 6 === 0) {
-                    setTweetData(shuffleArray(feminist_sample_1));
-                    setAnswer(Array(feminist_sample_1.length).fill(['', '']));
+                    setTweetData(shuffleArray(abortion_sample_1));
+                    setAnswer(Array(abortion_sample_1.length).fill(['', '']));
                 }
                 else if (userNum % 6 === 1) {
-                    setTweetData(shuffleArray(feminist_sample_2));
-                    setAnswer(Array(feminist_sample_2.length).fill(['', '']));
+                    setTweetData(shuffleArray(abortion_sample_2));
+                    setAnswer(Array(abortion_sample_2.length).fill(['', '']));
                 }
                 else if (userNum % 6 === 2) {
-                    setTweetData(shuffleArray(feminist_sample_3));
-                    setAnswer(Array(feminist_sample_3.length).fill(['', '']));
+                    setTweetData(shuffleArray(abortion_sample_3));
+                    setAnswer(Array(abortion_sample_3.length).fill(['', '']));
                 }
                 else if (userNum % 6 === 3) {
-                    setTweetData(shuffleArray(feminist_sample_4));
-                    setAnswer(Array(feminist_sample_4.length).fill(['', '']));
+                    setTweetData(shuffleArray(abortion_sample_4));
+                    setAnswer(Array(abortion_sample_4.length).fill(['', '']));
                 }
                 else if (userNum % 6 === 4) {
-                    setTweetData(shuffleArray(feminist_sample_5));
-                    setAnswer(Array(feminist_sample_5.length).fill(['', '']));
+                    setTweetData(shuffleArray(abortion_sample_5));
+                    setAnswer(Array(abortion_sample_5.length).fill(['', '']));
                 }
                 else {
-                    setTweetData(shuffleArray(feminist_sample_6));
-                    setAnswer(Array(feminist_sample_6.length).fill(['', '']));
+                    setTweetData(shuffleArray(abortion_sample_6));
+                    setAnswer(Array(abortion_sample_6.length).fill(['', '']));
                 }
             } else {
                 console.log("No data available");
@@ -161,7 +161,7 @@ export const Task1Page = (props) => {
                     {currentPageNum === 7 ?
                         <>
                             <div className='explaination'>
-                                In <b>task 1</b>, your goal is to detect <b>hate speech targeting the feminist movement</b> in the given tweets and provide annotations accordingly.
+                                In <b>task 1</b>, your goal is to detect <b>hate speech targeting the legalization of abortion</b> in the given tweets and provide annotations accordingly.
                                 Please carefully read the instructions below to complete the annotations.
                             </div>
                             <div className='explainBox'>
@@ -172,13 +172,13 @@ export const Task1Page = (props) => {
                                 <b> • &nbsp;Non-hate:</b> If a tweet does not contain hate speech, select this annotation. Tweets in this category should be free from any form of hate speech or offensive language.
                             </div>
                             <div className='explaination'>
-                                If you select the <b>“Non-hate”</b>, you will be provided with an option to check whether the tweet belongs to the case of <b>"Advocate"</b> of feminist movement or not.
+                                If you select the <b>“Non-hate”</b>, you will be provided with an option to check whether the tweet belongs to the case of <b>"Advocate"</b> of the legalization of abortion or not.
                             </div>
                         </>
                     : 
                         <>
                             <div className='explaination'>
-                                Please classify the following tweet as hate speech or non-hate speech to the <b>feminist movement</b>.
+                                Please classify the following tweet as hate speech or non-hate speech to the <b>people who support legalization of abortion</b>.
                             </div>
                             <div className='explainBox'>
                                 <b>Annotation definitions:</b>

@@ -149,7 +149,7 @@ export const PostSurveyPage = (props) => {
                         <div className='questionsContainer'>
                             <div className='questionBox'>
                                 <div className='question'>
-                                    <b>1.</b> If we provide the given statements of perception, cognition, and action to general people, do you think it would help people understand the value of feminist movement?
+                                    <b>1.</b> If we provide the given statements of perception, cognition, and action to general people, do you think it would help people understand the value of legalization of abortion?
                                 </div>
                                 <Multichoice val={answer[0]} setAnswer={(val) => setIthAnswer(0, val)} labels={['Very Not Helpful', 'Not Helpful', 'Neutral', 'Helpful', 'Very Helpful']}/>
                                 <div className='extraQuestionContainer'>

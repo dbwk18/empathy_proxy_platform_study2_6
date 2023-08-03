@@ -161,7 +161,7 @@ export const PreSurveyPage = (props) => {
                         <div className='questionsContainer'>
                             <div className='questionBox'>
                                 <div className='question'>
-                                    1. Do you support <b>feminist movement</b>?
+                                    1. Do you support <b>legalization of abortion</b>?
                                 </div>
                                 <Multichoice val={answer[0]} setAnswer={(val) => setIthAnswer(0, val)} labels={['Yes', 'No']} content={null}/>
                             </div>
