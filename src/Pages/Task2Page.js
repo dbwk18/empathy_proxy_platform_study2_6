@@ -231,9 +231,8 @@ export const Task2Page = (props) => {
                                                 <div className='question'>
                                                     <b>{index + 1}-e*.</b> (Optional) Why do you think it’s well represented or not?
                                                 </div>
-                                                LLM Related: <input className='shortform' name={index} id={5} value={answer[index][5]} onChange={inputHandler}></input>
-                                                Content Related: <input className='shortform' name={index} id={6} value={answer[index][6]} onChange={inputHandler}></input>
-                                                 
+                                                Related to the characteristic of LLM response: <input className='shortform' name={index} id={5} value={answer[index][5]} onChange={inputHandler}></input>
+                                                Related to the generated contents: <input className='shortform' name={index} id={6} value={answer[index][6]} onChange={inputHandler}></input>
                                             </div>
                                         </div>
                                     ))
