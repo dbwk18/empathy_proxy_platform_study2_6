@@ -30,6 +30,8 @@ export const Task1Page = (props) => {
 
     // prevent back & refresh button
     useEffect(() => {
+        console.log(tweetData);
+
         const preventGoBack = () => {
             history.pushState(history.state, null, location.href);
         }
@@ -42,7 +44,6 @@ export const Task1Page = (props) => {
         window.addEventListener('popstate', preventGoBack);
 
         window.addEventListener("beforeunload", preventRefresh);
-        getUserNum();
 
         return() => {
             window.removeEventListener('popstate', preventGoBack);
@@ -152,6 +153,7 @@ export const Task1Page = (props) => {
     }
 
     function next () {
+        getUserNum();
         setCurrentPageNum(currentPageNum + 1);
     }
 
