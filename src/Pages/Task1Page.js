@@ -30,8 +30,6 @@ export const Task1Page = (props) => {
 
     // prevent back & refresh button
     useEffect(() => {
-        console.log(tweetData);
-
         const preventGoBack = () => {
             history.pushState(history.state, null, location.href);
         }
