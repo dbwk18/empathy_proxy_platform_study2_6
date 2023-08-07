@@ -76,35 +76,35 @@ export const Task2Page = (props) => {
                 const userNum = snapshot.val().user_num;
                 if (userNum % 8 === 0) {
                     setTweetData(shuffleArray(abortion_sample_1));
-                    setAnswer(Array(abortion_sample_1.length).fill(['', '']));
+                    setAnswer(Array(abortion_sample_1.length).fill(['', '', '', '', '', '', '']));
                 }
                 else if (userNum % 8 === 1) {
                     setTweetData(shuffleArray(abortion_sample_2));
-                    setAnswer(Array(abortion_sample_2.length).fill(['', '']));
+                    setAnswer(Array(abortion_sample_2.length).fill(['', '', '', '', '', '', '']));
                 }
                 else if (userNum % 8 === 2) {
                     setTweetData(shuffleArray(abortion_sample_3));
-                    setAnswer(Array(abortion_sample_3.length).fill(['', '']));
+                    setAnswer(Array(abortion_sample_3.length).fill(['', '', '', '', '', '', '']));
                 }
                 else if (userNum % 8 === 3) {
                     setTweetData(shuffleArray(abortion_sample_4));
-                    setAnswer(Array(abortion_sample_4.length).fill(['', '']));
+                    setAnswer(Array(abortion_sample_4.length).fill(['', '', '', '', '', '', '']));
                 }
                 else if (userNum % 8 === 4) {
                     setTweetData(shuffleArray(abortion_sample_5));
-                    setAnswer(Array(abortion_sample_5.length).fill(['', '']));
+                    setAnswer(Array(abortion_sample_5.length).fill(['', '', '', '', '', '', '']));
                 }
                 else if (userNum % 8 === 5) {
                     setTweetData(shuffleArray(abortion_sample_6));
-                    setAnswer(Array(abortion_sample_6.length).fill(['', '']));
+                    setAnswer(Array(abortion_sample_6.length).fill(['', '', '', '', '', '', '']));
                 }
                 else if (userNum % 8 === 6) {
                     setTweetData(shuffleArray(abortion_sample_7));
-                    setAnswer(Array(abortion_sample_7.length).fill(['', '']));
+                    setAnswer(Array(abortion_sample_7.length).fill(['', '', '', '', '', '', '']));
                 }
                 else {
                     setTweetData(shuffleArray(abortion_sample_8));
-                    setAnswer(Array(abortion_sample_8.length).fill(['', '']));
+                    setAnswer(Array(abortion_sample_8.length).fill(['', '', '', '', '', '', '']));
                 }
             } else {
                 console.log("No data available");
