@@ -76,35 +76,35 @@ export const Task2Page = (props) => {
                 const userNum = snapshot.val().user_num;
                 if (userNum % 8 === 0) {
                     setTweetData(shuffleArray(abortion_sample_1));
-                    setAnswer(Array(abortion_sample_1.length).fill(['', '', '', '', '', '', '']));
+                    setAnswer(Array(abortion_sample_1.length).fill(['', '', '', '', '', '']));
                 }
                 else if (userNum % 8 === 1) {
                     setTweetData(shuffleArray(abortion_sample_2));
-                    setAnswer(Array(abortion_sample_2.length).fill(['', '', '', '', '', '', '']));
+                    setAnswer(Array(abortion_sample_2.length).fill(['', '', '', '', '', '']));
                 }
                 else if (userNum % 8 === 2) {
                     setTweetData(shuffleArray(abortion_sample_3));
-                    setAnswer(Array(abortion_sample_3.length).fill(['', '', '', '', '', '', '']));
+                    setAnswer(Array(abortion_sample_3.length).fill(['', '', '', '', '', '']));
                 }
                 else if (userNum % 8 === 3) {
                     setTweetData(shuffleArray(abortion_sample_4));
-                    setAnswer(Array(abortion_sample_4.length).fill(['', '', '', '', '', '', '']));
+                    setAnswer(Array(abortion_sample_4.length).fill(['', '', '', '', '', '']));
                 }
                 else if (userNum % 8 === 4) {
                     setTweetData(shuffleArray(abortion_sample_5));
-                    setAnswer(Array(abortion_sample_5.length).fill(['', '', '', '', '', '', '']));
+                    setAnswer(Array(abortion_sample_5.length).fill(['', '', '', '', '', '']));
                 }
                 else if (userNum % 8 === 5) {
                     setTweetData(shuffleArray(abortion_sample_6));
-                    setAnswer(Array(abortion_sample_6.length).fill(['', '', '', '', '', '', '']));
+                    setAnswer(Array(abortion_sample_6.length).fill(['', '', '', '', '', '']));
                 }
                 else if (userNum % 8 === 6) {
                     setTweetData(shuffleArray(abortion_sample_7));
-                    setAnswer(Array(abortion_sample_7.length).fill(['', '', '', '', '', '', '']));
+                    setAnswer(Array(abortion_sample_7.length).fill(['', '', '', '', '', '']));
                 }
                 else {
                     setTweetData(shuffleArray(abortion_sample_8));
-                    setAnswer(Array(abortion_sample_8.length).fill(['', '', '', '', '', '', '']));
+                    setAnswer(Array(abortion_sample_8.length).fill(['', '', '', '', '', '']));
                 }
             } else {
                 console.log("No data available");
@@ -225,14 +225,13 @@ export const Task2Page = (props) => {
                                                 </div>
                                                 <Likertchoice key={data.Tweet + 4} val={answer[index][3]} id={index * 7 + 4} setAnswer={(val) => setIthAnswer(index, 3, val)} labels={['Strongly Not Believable', 'Not Believable', 'Neutral', 'Believable', 'Strongly Belivable']}/>
                                                 <div className='question'>
-                                                    <b>{index + 1}-e.</b> How well does the above perception, cognition, and action represent the  perspectives of people who support legalization of abortion?
+                                                    <b>{index + 1}-e.</b> How well does the above perception, cognition, and action represent the perspectives of people who support legalization of abortion?
                                                 </div>
                                                 <Likertchoice key={data.Tweet + 5} val={answer[index][4]} id={index * 7 + 5} setAnswer={(val) => setIthAnswer(index, 4, val)} labels={['Strongly Not Representative', 'Not Representative', 'Neutral', 'Representative', 'Strongly Representative']}/>
                                                 <div className='question'>
                                                     <b>{index + 1}-e*.</b> (Optional) Why do you think it’s well represented or not?
                                                 </div>
-                                                Related to the characteristics of LLM response: <input className='shortform' name={index} id={5} value={answer[index][5]} onChange={inputHandler}></input>
-                                                Related to the generated contents: <input className='shortform' name={index} id={6} value={answer[index][6]} onChange={inputHandler}></input>
+                                                <input className='shortform' name={index} id={5} value={answer[index][5]} onChange={inputHandler}></input>
                                             </div>
                                         </div>
                                     ))
