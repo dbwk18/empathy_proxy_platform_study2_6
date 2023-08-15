@@ -153,6 +153,31 @@ export const Topbar = (props) => {
                             </svg>                            
                         )
                     }
+                    {
+                        props.currentState <= 6 ?
+                        <svg height="2" width="100">
+                            <rect width="100" height="2" fill="#dddddd"/>
+                        </svg>
+                        :
+                        <svg height="2" width="100">
+                            <rect width="100" height="2" fill="#0481FF"/>
+                        </svg>
+                    }
+                    {   props.currentState < 7 ?
+                        <svg className='circle' height="16" width="16">
+                            <circle cx="8" cy="8" r="6" stroke="#dddddd" strokeWidth="2" fill="white" />
+                        </svg>
+                        :
+                        ( props.currentState === 7 ?
+                            <svg className='circle' height="16" width="16">
+                                <circle cx="8" cy="8" r="6" stroke="#0481FF" strokeWidth="2" fill="white" />
+                            </svg>
+                            :
+                            <svg className='circle' height="16" width="16">
+                                <circle cx="8" cy="8" r="6" stroke="#0481FF" strokeWidth="2" fill="#0481FF" />
+                            </svg>                            
+                        )
+                    }
                 </div>
                 <div className='progresslabels'>
                     <div className={props.currentState < 1 ?'label': 'selectLabel label'}>
@@ -168,9 +193,12 @@ export const Topbar = (props) => {
                         Task 2
                     </div>
                     <div className={props.currentState < 5 ?'label': 'selectLabel label'}>
-                        Post-Survey
+                        Task 3
                     </div>
                     <div className={props.currentState < 6 ?'label': 'selectLabel label'}>
+                        Post-Survey
+                    </div>
+                    <div className={props.currentState < 7 ?'label': 'selectLabel label'}>
                         End
                     </div>
                 </div>

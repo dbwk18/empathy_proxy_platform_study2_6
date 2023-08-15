@@ -5,19 +5,19 @@ import { Multichoice } from '../Components/Multichoice/Multichoice';
 import { firebaseDB } from '../firebase';
 import { ref, push, get } from "firebase/database";
 
-import feminist_sample_1 from '../Data/Feminism/sample_feminist_200(1).json';
-import feminist_sample_2 from '../Data/Feminism/sample_feminist_200(2).json';
-import feminist_sample_3 from '../Data/Feminism/sample_feminist_200(3).json';
-import feminist_sample_4 from '../Data/Feminism/sample_feminist_200(4).json';
-import feminist_sample_5 from '../Data/Feminism/sample_feminist_200(5).json';
-import feminist_sample_6 from '../Data/Feminism/sample_feminist_200(6).json';
-import feminist_sample_7 from '../Data/Feminism/sample_feminist_200(7).json';
-import feminist_sample_8 from '../Data/Feminism/sample_feminist_200(8).json';
+import abortion_sample_1 from '../Data/Abortion/sample_abortion_200(1).json';
+import abortion_sample_2 from '../Data/Abortion/sample_abortion_200(2).json';
+import abortion_sample_3 from '../Data/Abortion/sample_abortion_200(3).json';
+import abortion_sample_4 from '../Data/Abortion/sample_abortion_200(4).json';
+import abortion_sample_5 from '../Data/Abortion/sample_abortion_200(5).json';
+import abortion_sample_6 from '../Data/Abortion/sample_abortion_200(6).json';
+import abortion_sample_7 from '../Data/Abortion/sample_abortion_200(7).json';
+import abortion_sample_8 from '../Data/Abortion/sample_abortion_200(8).json';
 
 import './page.css';
 
 
-export const Task2Page = (props) => {
+export const Task3Page = (props) => {
 
     // get user id from previous page
     const navigate = useNavigate();
@@ -41,7 +41,6 @@ export const Task2Page = (props) => {
         window.addEventListener('popstate', preventGoBack);
 
         window.addEventListener("beforeunload", preventRefresh);
-        // getUserNum();
 
         return() => {
             window.removeEventListener('popstate', preventGoBack);
@@ -50,7 +49,7 @@ export const Task2Page = (props) => {
     }, []);
 
     // set the page number
-    const [currentPageNum, setCurrentPageNum] = useState(9);
+    const [currentPageNum, setCurrentPageNum] = useState(11);
     const [answer, setAnswer] = useState([]);
 
     function checkAllAnswered (answer) {
@@ -74,37 +73,37 @@ export const Task2Page = (props) => {
         await get(userRef).then((snapshot) => {
             if (snapshot.exists()) {
                 const userNum = snapshot.val().user_num;
-                if(userNum % 8 === 0) {
-                    setTweetData(shuffleArray(feminist_sample_8));
-                    setAnswer(Array(feminist_sample_1.length).fill(['', '']));
+                if (userNum % 8 === 0) {
+                    setTweetData(shuffleArray(abortion_sample_1));
+                    setAnswer(Array(abortion_sample_1.length).fill(['', '']));
                 }
                 else if (userNum % 8 === 1) {
-                    setTweetData(shuffleArray(feminist_sample_1));
-                    setAnswer(Array(feminist_sample_2.length).fill(['', '']));
+                    setTweetData(shuffleArray(abortion_sample_2));
+                    setAnswer(Array(abortion_sample_2.length).fill(['', '']));
                 }
                 else if (userNum % 8 === 2) {
-                    setTweetData(shuffleArray(feminist_sample_2));
-                    setAnswer(Array(feminist_sample_3.length).fill(['', '']));
+                    setTweetData(shuffleArray(abortion_sample_3));
+                    setAnswer(Array(abortion_sample_3.length).fill(['', '']));
                 }
                 else if (userNum % 8 === 3) {
-                    setTweetData(shuffleArray(feminist_sample_3));
-                    setAnswer(Array(feminist_sample_4.length).fill(['', '']));
+                    setTweetData(shuffleArray(abortion_sample_4));
+                    setAnswer(Array(abortion_sample_4.length).fill(['', '']));
                 }
                 else if (userNum % 8 === 4) {
-                    setTweetData(shuffleArray(feminist_sample_4));
-                    setAnswer(Array(feminist_sample_5.length).fill(['', '']));
+                    setTweetData(shuffleArray(abortion_sample_5));
+                    setAnswer(Array(abortion_sample_5.length).fill(['', '']));
                 }
                 else if (userNum % 8 === 5) {
-                    setTweetData(shuffleArray(feminist_sample_5));
-                    setAnswer(Array(feminist_sample_5.length).fill(['', '']));
+                    setTweetData(shuffleArray(abortion_sample_6));
+                    setAnswer(Array(abortion_sample_6.length).fill(['', '']));
                 }
                 else if (userNum % 8 === 6) {
-                    setTweetData(shuffleArray(feminist_sample_6));
-                    setAnswer(Array(feminist_sample_7.length).fill(['', '']));
+                    setTweetData(shuffleArray(abortion_sample_7));
+                    setAnswer(Array(abortion_sample_7.length).fill(['', '']));
                 }
                 else {
-                    setTweetData(shuffleArray(feminist_sample_7));
-                    setAnswer(Array(feminist_sample_8.length).fill(['', '']));
+                    setTweetData(shuffleArray(abortion_sample_8));
+                    setAnswer(Array(abortion_sample_8.length).fill(['', '']));
                 }
             } else {
                 console.log("No data available");
@@ -121,7 +120,7 @@ export const Task2Page = (props) => {
         const dataObject = {};
         for (let i = 0; i < answer.length; i++) {
             const tweetId = tweetData[i]['ID'].toString().padStart(4, '0');
-            dataObject[`task2_answer_${tweetId}`] = answer[i];
+            dataObject[`task3_answer_${tweetId}`] = answer[i];
         }
 
         await push(userRef, dataObject);
@@ -129,9 +128,8 @@ export const Task2Page = (props) => {
 
     const clickLink = async () => {
         await writeUserData();
-        navigate('/task3', { state: { id } });
+        navigate('/post', { state: { id } });
     }
-
 
     function setIthAnswer (i, j, val) {
         setAnswer(prevAnswer => {
@@ -154,14 +152,14 @@ export const Task2Page = (props) => {
 
     return(
         <>
-            <Topbar id={id} currentState={4}/>
+            <Topbar id={id} currentState={5}/>
             <div className='page'>
                 <div className='survey'>
-                    {currentPageNum === 9 ?
+                    {currentPageNum === 11 ?
                         <>
                             <div className='explaination'>
-                                In <b>task 2</b>, you will be doing same task as task1. 
-                                Your goal is to detect <b>hate speech targeting the feminist movement</b> in the given tweets and provide annotations accordingly.
+                                In <b>task 3</b>, the topic will differ from task 1 and 2. 
+                                Your goal is to detect <b>hate speech targeting the legalization of abortion</b> in the given tweets and provide annotations accordingly.
                                 Please carefully read the instructions below to complete the annotations.
                             </div>
                             <div className='explainBox'>
@@ -172,13 +170,13 @@ export const Task2Page = (props) => {
                                 <b> • &nbsp;Non-hate:</b> If a tweet does not contain hate speech, select this annotation. Tweets in this category should be free from any form of hate speech or offensive language.
                             </div>
                             <div className='explaination'>
-                                If you select the <b>“Non-hate”</b>, you will be provided with an option to check whether the tweet belongs to the case of <b>"Advocate"</b> of feminist movement or not.
+                                If you select the <b>“Non-hate”</b>, you will be provided with an option to check whether the tweet belongs to the case of <b>"Advocate"</b> of the legalization of abortion or not.
                             </div>
                         </>
                     : 
                         <>
                             <div className='explaination'>
-                                Please classify the following tweet as hate speech or non-hate speech to the <b>feminist movement</b>.
+                                Please classify the following tweet as hate speech or non-hate speech to the <b>people who support legalization of abortion</b>.
                             </div>
                             <div className='explainBox'>
                                 <b>Annotation definitions:</b>
@@ -215,16 +213,16 @@ export const Task2Page = (props) => {
                     }        
 
                     {
-                        currentPageNum === 10 &&
+                        currentPageNum === 12 &&
                         <div className='explaination'>
-                            Please note that once you proceed to the <b>next</b> page, you will not be able to come back to <b>Task 2</b> section. 
+                            Please note that once you proceed to the <b>next</b> page, you will not be able to come back to <b>Task 3</b> section. 
                             Make sure to carefully review and complete all the answers on this page before proceeding.
                         </div>
                     }
 
                     <div className='buttonContainer'>
-                        {currentPageNum === 9 ? <div/> : <button className='prevBtn' onClick={prev}>Prev</button>}
-                        {currentPageNum === 10 ? 
+                        {currentPageNum === 11 ? <div/> : <button className='prevBtn' onClick={prev}>Prev</button>}
+                        {currentPageNum === 12 ? 
                             ( checkAllAnswered(answer) ?
                                 <button onClick={clickLink} className='nextBtn'>Next</button>
                                 :

@@ -55,7 +55,7 @@ export const IntroPage = (props) => {
                         <>
                             <div className='explaination'>
                                 Thank you for your interest in participating in our study.
-                                The purpose of this study is to gain insights into the perspectives of individuals who support <b>'Legalization of Abortion'</b>.
+                                The purpose of this study is to gain insights into understanding <b>hate speech</b> related to topics such as feminist movement and legalization of abortion.
                                 Your valuable input will contribute to a deeper understanding of these important social issues.
                             </div>
                             <br/>
@@ -83,10 +83,8 @@ export const IntroPage = (props) => {
                             :
                             <>
                                 <div className='explaination'>
-                                    This study consists of two different tasks.
-                                    The <b>first task</b> involves hate speech detection of tweets.
-                                    You will be presented with a series of tweets and asked to assess whether they contain hate speech or not, and why.
-                                    In the <b>second task</b>, you will be provided with additional information created with AI when given tweets and asked to rate your level of agreement with each step.
+                                    This study consists of three tasks.
+                                    During three tasks, you will be presented with a series of tweets and asked to annotate whether they contain hate speech or not. The topics might differ between tasks.
                                     There will be pre- and post- survey before and after the task.
                                 </div>
                                 <br/>

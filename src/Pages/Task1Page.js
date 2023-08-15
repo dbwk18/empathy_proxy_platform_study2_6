@@ -5,15 +5,14 @@ import { Multichoice } from '../Components/Multichoice/Multichoice';
 import { firebaseDB } from '../firebase';
 import { ref, push, get } from "firebase/database";
 
-import abortion_sample_1 from '../Data/Study1/sample_abortion_200(1).json';
-import abortion_sample_2 from '../Data/Study1/sample_abortion_200(2).json';
-import abortion_sample_3 from '../Data/Study1/sample_abortion_200(3).json';
-import abortion_sample_4 from '../Data/Study1/sample_abortion_200(4).json';
-import abortion_sample_5 from '../Data/Study1/sample_abortion_200(5).json';
-import abortion_sample_6 from '../Data/Study1/sample_abortion_200(6).json';
-import abortion_sample_7 from '../Data/Study1/sample_abortion_200(7).json';
-import abortion_sample_8 from '../Data/Study1/sample_abortion_200(8).json';
-
+import feminist_sample_1 from '../Data/Feminism/sample_feminist_200(1).json';
+import feminist_sample_2 from '../Data/Feminism/sample_feminist_200(2).json';
+import feminist_sample_3 from '../Data/Feminism/sample_feminist_200(3).json';
+import feminist_sample_4 from '../Data/Feminism/sample_feminist_200(4).json';
+import feminist_sample_5 from '../Data/Feminism/sample_feminist_200(5).json';
+import feminist_sample_6 from '../Data/Feminism/sample_feminist_200(6).json';
+import feminist_sample_7 from '../Data/Feminism/sample_feminist_200(7).json';
+import feminist_sample_8 from '../Data/Feminism/sample_feminist_200(8).json';
 
 import './page.css';
 
@@ -42,6 +41,7 @@ export const Task1Page = (props) => {
         window.addEventListener('popstate', preventGoBack);
 
         window.addEventListener("beforeunload", preventRefresh);
+        // getUserNum();
 
         return() => {
             window.removeEventListener('popstate', preventGoBack);
@@ -74,37 +74,37 @@ export const Task1Page = (props) => {
         await get(userRef).then((snapshot) => {
             if (snapshot.exists()) {
                 const userNum = snapshot.val().user_num;
-                if (userNum % 8 === 0) {
-                    setTweetData(shuffleArray(abortion_sample_1));
-                    setAnswer(Array(abortion_sample_1.length).fill(['', '']));
+                if(userNum % 8 === 0) {
+                    setTweetData(shuffleArray(feminist_sample_1));
+                    setAnswer(Array(feminist_sample_1.length).fill(['', '']));
                 }
                 else if (userNum % 8 === 1) {
-                    setTweetData(shuffleArray(abortion_sample_2));
-                    setAnswer(Array(abortion_sample_2.length).fill(['', '']));
+                    setTweetData(shuffleArray(feminist_sample_2));
+                    setAnswer(Array(feminist_sample_2.length).fill(['', '']));
                 }
                 else if (userNum % 8 === 2) {
-                    setTweetData(shuffleArray(abortion_sample_3));
-                    setAnswer(Array(abortion_sample_3.length).fill(['', '']));
+                    setTweetData(shuffleArray(feminist_sample_3));
+                    setAnswer(Array(feminist_sample_3.length).fill(['', '']));
                 }
                 else if (userNum % 8 === 3) {
-                    setTweetData(shuffleArray(abortion_sample_4));
-                    setAnswer(Array(abortion_sample_4.length).fill(['', '']));
+                    setTweetData(shuffleArray(feminist_sample_4));
+                    setAnswer(Array(feminist_sample_4.length).fill(['', '']));
                 }
                 else if (userNum % 8 === 4) {
-                    setTweetData(shuffleArray(abortion_sample_5));
-                    setAnswer(Array(abortion_sample_5.length).fill(['', '']));
+                    setTweetData(shuffleArray(feminist_sample_5));
+                    setAnswer(Array(feminist_sample_5.length).fill(['', '']));
                 }
                 else if (userNum % 8 === 5) {
-                    setTweetData(shuffleArray(abortion_sample_6));
-                    setAnswer(Array(abortion_sample_6.length).fill(['', '']));
+                    setTweetData(shuffleArray(feminist_sample_6));
+                    setAnswer(Array(feminist_sample_5.length).fill(['', '']));
                 }
                 else if (userNum % 8 === 6) {
-                    setTweetData(shuffleArray(abortion_sample_7));
-                    setAnswer(Array(abortion_sample_7.length).fill(['', '']));
+                    setTweetData(shuffleArray(feminist_sample_7));
+                    setAnswer(Array(feminist_sample_7.length).fill(['', '']));
                 }
                 else {
-                    setTweetData(shuffleArray(abortion_sample_8));
-                    setAnswer(Array(abortion_sample_8.length).fill(['', '']));
+                    setTweetData(shuffleArray(feminist_sample_8));
+                    setAnswer(Array(feminist_sample_8.length).fill(['', '']));
                 }
             } else {
                 console.log("No data available");
@@ -132,11 +132,6 @@ export const Task1Page = (props) => {
         navigate('/task2', { state: { id } });
     }
 
-    // const inputHandler = (e) => {
-    //     e.preventDefault();
-    //     setIthAnswer(Number(e.target.name), Number(e.target.id), e.target.value);
-    // }
-
     function setIthAnswer (i, j, val) {
         setAnswer(prevAnswer => {
             const newAnswer = [...prevAnswer];
@@ -155,14 +150,6 @@ export const Task1Page = (props) => {
         setCurrentPageNum(currentPageNum + 1);
     }
 
-    // const content = {
-    //     "Grievance": "frustration over a minority group's perceived privilege.",
-    //     "Incitement": "implicitly promoting known hate groups and ideologies (e.g. by flaunting in-group power).",
-    //     "Inferiority": "implying some group or person is of lesser value than another.",
-    //     "Irony": "using sarcasm, humor, and satire to demean someone.",
-    //     "Stereotypes": "associating a group with negative attribute using euphemisms, circumlocution, or metaphorical language.",
-    //     "Threats": "making an indirect commitment to attack someone's body, well-being, reputation, liberty, etc."
-    // }
 
     return(
         <>
@@ -172,7 +159,7 @@ export const Task1Page = (props) => {
                     {currentPageNum === 7 ?
                         <>
                             <div className='explaination'>
-                                In <b>task 1</b>, your goal is to detect <b>hate speech targeting the legalization of abortion</b> in the given tweets and provide annotations accordingly.
+                                In <b>task 1</b>, your goal is to detect <b>hate speech targeting the feminist movement</b> in the given tweets and provide annotations accordingly.
                                 Please carefully read the instructions below to complete the annotations.
                             </div>
                             <div className='explainBox'>
@@ -183,13 +170,13 @@ export const Task1Page = (props) => {
                                 <b> • &nbsp;Non-hate:</b> If a tweet does not contain hate speech, select this annotation. Tweets in this category should be free from any form of hate speech or offensive language.
                             </div>
                             <div className='explaination'>
-                                If you select the <b>“Non-hate”</b>, you will be provided with an option to check whether the tweet belongs to the case of <b>"Advocate"</b> of the legalization of abortion or not.
+                                If you select the <b>“Non-hate”</b>, you will be provided with an option to check whether the tweet belongs to the case of <b>"Advocate"</b> of feminist movement or not.
                             </div>
                         </>
                     : 
                         <>
                             <div className='explaination'>
-                                Please classify the following tweet as hate speech or non-hate speech to the <b>people who support legalization of abortion</b>.
+                                Please classify the following tweet as hate speech or non-hate speech to the <b>feminist movement</b>.
                             </div>
                             <div className='explainBox'>
                                 <b>Annotation definitions:</b>
@@ -217,22 +204,6 @@ export const Task1Page = (props) => {
                                                 :
                                                 null
                                             }
-
-                                            {/* {answer[index][0] === 'Hate' ? 
-                                                <div className='extraQuestionContainer'>
-                                                    <div className='question'>
-                                                        <b>{index + 1}-a.</b> Select the appropriate type of hate from the following options:
-                                                    </div>
-                                                    <Multichoice val={answer[index][1]} setAnswer={(val) => setIthAnswer(index, 1, val)} labels={['Grievance', 'Incitement', 'Inferiority', 'Irony', 'Stereotypes', 'Threats', 'Other']} content={content}/>
-                                                    <div className='question'>
-                                                        <b>{index + 1}-b.</b> Reason why it falls to selected category:
-                                                    </div>
-                                                    <input className='shortform' name={index} value={answer[index][2]} onChange={inputHandler}></input>
-                                                </div>
-                                                :
-                                                null
-                                            } */}
-
                                         </div>
                                     ))
                                 }

@@ -129,7 +129,7 @@ export const PostSurveyPage = (props) => {
 
     return(
         <>
-            <Topbar id={id} currentState={5}/>
+            <Topbar id={id} currentState={6}/>
             <div className='page'>
                 <div className='survey'>
                 <div className='explaination'>

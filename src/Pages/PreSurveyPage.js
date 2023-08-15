@@ -41,21 +41,8 @@ export const PreSurveyPage = (props) => {
 
     // set the page number
     const [currentPageNum, setCurrentPageNum] = useState(5);
- 
-    const questions = [
-        'I can easily tell if someone else wants to enter a conversation.',
-        'I can pick up quickly if someone says one thing but means another.',
-        'I am good at predicting how someone will feel.',
-        'I am quick to spot when someone in a group is feeling awkward or uncomfortable.',
-        'Other people tell me I am good at understanding how they are feeling and what they are thinking.',
-        'I can easily tell if someone else is interested or bored with what I am saying',
-        'I can sense if I am intruding, even if the other person does not tell me.',
-        'I can easily work out what another person might want to talk about.',
-        'I can tell if someone is masking their true emotion.',
-        'I am good at predicting what someone will do.'
-    ];
 
-    const [answer, setAnswer] = useState(Array(5).fill(''));
+    const [answer, setAnswer] = useState(Array(6).fill(''));
 
     function checkAllAnswered (answer) {
         const isAllAnswer = answer.every(item => item !== '');
@@ -83,12 +70,12 @@ export const PreSurveyPage = (props) => {
                     if (snapshot.exists()) {
                         confirmedBox = snapshot.val();
                         while (true) {
-                            if (updatePointer >= 40) {
+                            if (updatePointer >= 80) {
                                 updatePointer = 0;
                                 const isAllConfirmed = confirmedBox.every(val => val === 1);
                                 if(isAllConfirmed) {
                                     updatePointer += 1;
-                                    set(confirmRef, new Array(40).fill(0));
+                                    set(confirmRef, new Array(80).fill(0));
                                     set(pointerRef, updatePointer);
                                     break;
                                 }
@@ -121,11 +108,6 @@ export const PreSurveyPage = (props) => {
         navigate('/task1', { state: { id } });
     }
 
-    const inputHandler = (e) => {
-        e.preventDefault();
-        setIthAnswer(1, e.target.value);
-    }
-
     function setIthAnswer (i, val) {
         setAnswer(prevAnswer => {
             const newAnswer = [...prevAnswer];
@@ -149,7 +131,7 @@ export const PreSurveyPage = (props) => {
                 <div className='survey'>
                     <div className='explaination'>
                         {currentPageNum === 5 ?
-                            <>Before the study, please answer the following questions.</>
+                            <>Before the study, we want to know about your <b>stance</b> towards the following topics.</>
                             :
                             <>Please tell us a bit about yourself.</>
                         }
@@ -158,9 +140,15 @@ export const PreSurveyPage = (props) => {
                         <div className='questionsContainer'>
                             <div className='questionBox'>
                                 <div className='question'>
-                                    1. Do you support <b>legalization of abortion</b>?
+                                    1. Do you support <b>feminist movement</b>?
                                 </div>
                                 <Multichoice val={answer[0]} setAnswer={(val) => setIthAnswer(0, val)} labels={['Yes', 'No']} content={null}/>
+                            </div>
+                            <div className='questionBox'>
+                                <div className='question'>
+                                    2. Do you support <b>legalization of abortion</b>?
+                                </div>
+                                <Multichoice val={answer[1]} setAnswer={(val) => setIthAnswer(1, val)} labels={['Yes', 'No']} content={null}/>
                             </div>
                         </div>
                         :
@@ -169,25 +157,25 @@ export const PreSurveyPage = (props) => {
                                 <div className='question'>
                                     1. What gender do you identify as?
                                 </div>
-                                <Multichoice val={answer[1]} setAnswer={(val) => setIthAnswer(1, val)} labels={['Male', 'Female', 'Non-binary', 'Prefer not to say']} content={null}/>
+                                <Multichoice val={answer[2]} setAnswer={(val) => setIthAnswer(2, val)} labels={['Male', 'Female', 'Non-binary', 'Prefer not to say']} content={null}/>
                             </div>
                             <div className='questionBox'>
                                 <div className='question'>
                                     2. What is your age?
                                 </div>
-                                <Multichoice val={answer[2]} setAnswer={(val) => setIthAnswer(2, val)} labels={['Under 18', '18 - 30 years old', '30 - 45 years old', '45+','Prefer not to say']} content={null}/>
+                                <Multichoice val={answer[3]} setAnswer={(val) => setIthAnswer(3, val)} labels={['Under 18', '18 - 30 years old', '30 - 45 years old', '45+','Prefer not to say']} content={null}/>
                             </div>
                             <div className='questionBox'>
                                 <div className='question'>
                                     3. What is your ethnicity?
                                 </div>
-                                <Multichoice val={answer[3]} setAnswer={(val) => setIthAnswer(3, val)} labels={['White', 'Hispanic/Latino', 'Black/African American', 'Asian', 'American Indian', 'Other', 'Prefer not to say']} content={null}/>
+                                <Multichoice val={answer[4]} setAnswer={(val) => setIthAnswer(4, val)} labels={['White', 'Hispanic/Latino', 'Black/African American', 'Asian', 'American Indian', 'Other', 'Prefer not to say']} content={null}/>
                             </div>
                             <div className='questionBox'>
                                 <div className='question'>
                                     4. What is the highest degree or level of education you have completed?
                                 </div>
-                                <Multichoice val={answer[4]} setAnswer={(val) => setIthAnswer(4, val)} labels={['Less than a high school', 'High school degree', "Bachelor's degree", "Master's degree", 'Doctorate', 'Other', 'Prefer not to say']} content={null}/>
+                                <Multichoice val={answer[5]} setAnswer={(val) => setIthAnswer(5, val)} labels={['Less than a high school', 'High school degree', "Bachelor's degree", "Master's degree", 'Doctorate', 'Other', 'Prefer not to say']} content={null}/>
                             </div>
                         </div>
                     }

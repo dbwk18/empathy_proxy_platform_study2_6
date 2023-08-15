@@ -28,7 +28,7 @@ export const EndPage = (props) => {
 
     return(
         <>
-            <Topbar id={id} currentState={6}/>
+            <Topbar id={id} currentState={7}/>
             <div className='page'>
                 <div>
                     <b>Thank you for participating our study.</b>
