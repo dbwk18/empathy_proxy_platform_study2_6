@@ -190,7 +190,7 @@ export const Task1Page = (props) => {
                     : 
                         <>
                             <div className='explaination'>
-                                Please classify the following <b>initial tweet</b> (not tweet reply) as hate speech or non-hate speech to the <b>feminist movement</b>.
+                                Please classify the following <a style={{color: "#0481FF"}}><b>initial tweet</b></a> (not tweet reply) as hate speech or non-hate speech to the <b>feminist movement</b>.
                             </div>
                             <div className='explainBox'>
                                 <b>Annotation definitions:</b>
@@ -199,12 +199,30 @@ export const Task1Page = (props) => {
                                 <br/>
                                 <b> • &nbsp;Non-hate:</b> If a tweet does not contain hate speech, select this annotation. Tweets in this category should be free from any form of hate speech or offensive language.
                             </div>
+                            <div className='explainBox'>
+                                <b>Definition for each cognitive information processing steps:</b>
+                                <br/>
+                                <b> • &nbsp;Perception:</b> process of extracting relevant information, perceiving tone, and sentiment. 
+                                <br/>
+                                <b> • &nbsp;Cognition:</b> process to understand and interpret its meaning (e.g., analysis, evaluation)
+                                <br/>
+                                <b> • &nbsp;Action:</b> formulate response or reply to corresponding tweet 
+                            </div>
                             <div className='questionsContainer'>
                                 {
                                     tweetData.map((data, index) => (
                                         <div className='questionBox' key={index}>
-                                            <div className='question'>
+                                            <div className='question tweet'>
                                             <b>{index + 1}. Tweet: "</b><i>{data.Tweet}</i><b>"</b>
+                                            </div>
+                                            <div className='question reply'>
+                                            <b>Perception: </b>{data.perception}
+                                            </div>
+                                            <div className='question reply'>
+                                            <b>Cognition: </b>{data.cognition}
+                                            </div>
+                                            <div className='question reply'>
+                                            <b>Action: "</b><i>{data.action}</i><b>"</b>
                                             </div>
                                             <Multichoice key={index} val={answer[index][0]} setAnswer={(val) => setIthAnswer(index, 0, val)} labels={['Hate', 'Non-hate']} />
 
