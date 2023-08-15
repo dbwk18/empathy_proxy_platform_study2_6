@@ -4,14 +4,14 @@ import { getDatabase } from "firebase/database";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAVYU8DrM0m9QAAavuZVk94O_owf_Ts92g",
-  authDomain: "empathetic-proxy-s2-feminist.firebaseapp.com",
-  databaseURL: "https://empathetic-proxy-s2-feminist-default-rtdb.firebaseio.com",
-  projectId: "empathetic-proxy-s2-feminist",
-  storageBucket: "empathetic-proxy-s2-feminist.appspot.com",
-  messagingSenderId: "1079642734285",
-  appId: "1:1079642734285:web:a738a24255e91191c33384",
-  measurementId: "G-4013D115CW"
+  apiKey: "AIzaSyAyURkO684YYQb00PEhP-uUlAtaemjelT8",
+  authDomain: "empathetic-proxy-s2c2-feminist.firebaseapp.com",
+  databaseURL: "https://empathetic-proxy-s2c2-feminist-default-rtdb.firebaseio.com",
+  projectId: "empathetic-proxy-s2c2-feminist",
+  storageBucket: "empathetic-proxy-s2c2-feminist.appspot.com",
+  messagingSenderId: "698383867503",
+  appId: "1:698383867503:web:a20291c6e177440bc8f79a",
+  measurementId: "G-1T6L7C4D8P"
 };
 
 // Initialize Firebase

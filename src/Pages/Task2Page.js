@@ -160,8 +160,8 @@ export const Task2Page = (props) => {
                     {currentPageNum === 9 ?
                         <>
                             <div className='explaination'>
-                                In <b>task 2</b>, you will be doing same task as task1. 
-                                Your goal is to detect <b>hate speech targeting the feminist movement</b> in the given tweets and provide annotations accordingly.
+                                In <b>task 2</b>, you will be also detecting hate speech in the given tweets and provide annotations accordingly same as task1.
+                                However, unlike task 1, you will be provided with only the tweet without any additional information.  
                                 Please carefully read the instructions below to complete the annotations.
                             </div>
                             <div className='explainBox'>
