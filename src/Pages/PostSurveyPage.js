@@ -43,19 +43,6 @@ export const PostSurveyPage = (props) => {
     // set the page number
     const [currentPageNum, setCurrentPageNum] = useState(11);
 
-    const questions_qcae = [
-        'I can easily tell if someone else wants to enter a conversation.',
-        'I can pick up quickly if someone says one thing but means another.',
-        'I am good at predicting how someone will feel.',
-        'I am quick to spot when someone in a group is feeling awkward or uncomfortable.',
-        'Other people tell me I am good at understanding how they are feeling and what they are thinking.',
-        'I can easily tell if someone else is interested or bored with what I am saying',
-        'I can sense if I am intruding, even if the other person does not tell me.',
-        'I can easily work out what another person might want to talk about.',
-        'I can tell if someone is masking their true emotion.',
-        'I am good at predicting what someone will do.'
-    ];
-
     const questions = [
         'How mentally demanding was the task?',
         'How physically demanding was the task?',
@@ -65,10 +52,10 @@ export const PostSurveyPage = (props) => {
         'How insecure, discouraged, irritated, stressed, and annoyed were you?'
     ];
 
-    const [answer, setAnswer] = useState(Array(10).fill(''));
+    const [answer, setAnswer] = useState(Array(6).fill(''));
 
     function checkAllAnswered (answer) {
-        const isAllAnswer = answer[0] !== '' && answer[3] !== '' && answer[4] !== '' && answer[5] !== '' && answer[6] !== '' && answer[7] !== '' && answer[8] !== '' && answer[9] !== ''
+        const isAllAnswer = answer.every(item => item !== '');
         return isAllAnswer;
     }
 
@@ -136,7 +123,7 @@ export const PostSurveyPage = (props) => {
                         {currentPageNum === 11 ?
                             <>
                                 This is the post-survey about previous <b>Task 2</b>.
-                                We would like to gather more detailed information about your experience with the task.
+                                We would like to gather more information about your experience with the task.
                                 Please take a moment to answer the following questions.
                             </>
                             :
@@ -147,7 +134,7 @@ export const PostSurveyPage = (props) => {
                     </div>
                     {currentPageNum === 11 ?
                         <div className='questionsContainer'>
-                            <div className='questionBox'>
+                            {/* <div className='questionBox'>
                                 <div className='question'>
                                     <b>1.</b> If we provide the given statements of perception, cognition, and action to general people, do you think it would help people understand the value of legalization of abortion?
                                 </div>
@@ -170,7 +157,7 @@ export const PostSurveyPage = (props) => {
                                     <b>3.</b> After the completion of this survey, we are planning to conduct <b>online in-depth interviews</b> with participants to further explore their study experiences. Are you interested in participating in these interviews? (For those who express interest, we will announce a recruitment notice, and there will be additional compensation provided for their participation in the interview.)
                                 </div>
                                 <Multichoice val={answer[3]} setAnswer={(val) => setIthAnswer(3, val)} labels={['Yes', 'No']}/>
-                            </div>
+                            </div> */}
                         </div>
                         :
                         <div className='questionsContainer'>
@@ -180,7 +167,7 @@ export const PostSurveyPage = (props) => {
                                         <div className='question'>
                                             {index+1}. {question}
                                         </div>
-                                        <Likertchoice val={answer[index + 4]} id={index + 4} setAnswer={(val) => setIthAnswer(index + 4, val)} labels={['Very Low', 'Low', 'Little Low', 'Neutral', 'Little High', 'High', 'Very High']}/>
+                                        <Likertchoice val={answer[index]} id={index} setAnswer={(val) => setIthAnswer(index, val)} labels={['Very Low', 'Low', 'Little Low', 'Neutral', 'Little High', 'High', 'Very High']}/>
                                     </div>
                                 ))
                             }           
@@ -204,11 +191,12 @@ export const PostSurveyPage = (props) => {
                                 <button className='nextBtn disable'>Finish</button>
                             )
                             :
-                            ( checkAllAnswered(answer.slice(0,4)) ?
-                                <button className='nextBtn' onClick={next}>Next</button>
-                                :
-                                <button className='nextBtn disable'>Next</button>
-                            )      
+                            <button className='nextBtn' onClick={next}>Next</button>
+                            // ( checkAllAnswered(answer.slice(0,4)) ?
+                            //     <button className='nextBtn' onClick={next}>Next</button>
+                            //     :
+                            //     <button className='nextBtn disable'>Next</button>
+                            // )      
                         }
                     </div>
                 </div>
