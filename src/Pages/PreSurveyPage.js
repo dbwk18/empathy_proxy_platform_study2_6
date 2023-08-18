@@ -70,12 +70,12 @@ export const PreSurveyPage = (props) => {
                     if (snapshot.exists()) {
                         confirmedBox = snapshot.val();
                         while (true) {
-                            if (updatePointer >= 80) {
+                            if (updatePointer >= 40) {
                                 updatePointer = 0;
                                 const isAllConfirmed = confirmedBox.every(val => val === 1);
                                 if(isAllConfirmed) {
                                     updatePointer += 1;
-                                    set(confirmRef, new Array(80).fill(0));
+                                    set(confirmRef, new Array(40).fill(0));
                                     set(pointerRef, updatePointer);
                                     break;
                                 }
