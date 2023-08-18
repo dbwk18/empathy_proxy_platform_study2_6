@@ -137,6 +137,10 @@ export const Task1Page = (props) => {
             const newAnswer = [...prevAnswer];
             newAnswer[i] = [...newAnswer[i]];
             newAnswer[i][j] = val;
+
+             // clear sub question answer
+             if (j==0) newAnswer[i][1] = "";
+             
             return newAnswer;
         });
     }
