@@ -55,7 +55,7 @@ export const PostSurveyPage = (props) => {
     const [answer, setAnswer] = useState(Array(7).fill(''));
 
     function checkAllAnswered (answer) {
-        const isAllAnswer = answer.every(item => item !== '');
+        const isAllAnswer = answer[1] !== '' && answer[2] !== '' && answer[3] !== '' && answer[4] !== '' && answer[5] !== '' && answer[6] !== '';
         return isAllAnswer;
     }
 
