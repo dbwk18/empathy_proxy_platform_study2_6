@@ -213,7 +213,7 @@ export const Task1Page = (props) => {
                                     tweetData.map((data, index) => (
                                         <div className='questionBox' key={index}>
                                             <div className='question tweet'>
-                                            <b>{index + 1}. Tweet: "</b><i>{data.Tweet}</i><b>"</b>
+                                            <b>{index + 1}.</b> Classify the <b>original tweet</b> as hate or non-hate. <br/><br/> <b>Tweet: "</b><i>{data.Tweet}</i><b>"</b>
                                             </div>
                                             <div className='question reply'>
                                             <b>Perception: </b>{data.perception}
