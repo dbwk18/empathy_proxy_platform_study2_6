@@ -159,7 +159,7 @@ export const Task3Page = (props) => {
                         <>
                             <div className='explaination'>
                                 In <b>task 3</b>, the topic will differ from task 1 and 2. 
-                                Your goal is to detect <b>hate speech targeting the legalization of abortion</b> in the given tweets and provide annotations accordingly.
+                                Your goal is to detect <a style={{color: "#0481FF"}}><b>hate speech targeting the legalization of abortion</b></a> in the given tweets and provide annotations accordingly.
                                 Please carefully read the instructions below to complete the annotations.
                             </div>
                             <div className='explainBox'>

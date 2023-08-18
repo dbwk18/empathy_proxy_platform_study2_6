@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './multichoice.css'
 import { Tooltip } from '../Tooltip/Tooltip';
+import { firebaseDB } from '../../firebase';
+import { ref, set, get, push } from "firebase/database";
 
 
 export const Multichoice = (props) => {
