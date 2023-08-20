@@ -5,14 +5,14 @@ import { Multichoice } from '../Components/Multichoice/Multichoice';
 import { firebaseDB } from '../firebase';
 import { ref, push, get } from "firebase/database";
 
-import feminist_sample_1 from '../Data/Feminism/sample_feminist_200(1).json';
-import feminist_sample_2 from '../Data/Feminism/sample_feminist_200(2).json';
-import feminist_sample_3 from '../Data/Feminism/sample_feminist_200(3).json';
-import feminist_sample_4 from '../Data/Feminism/sample_feminist_200(4).json';
-import feminist_sample_5 from '../Data/Feminism/sample_feminist_200(5).json';
-import feminist_sample_6 from '../Data/Feminism/sample_feminist_200(6).json';
-import feminist_sample_7 from '../Data/Feminism/sample_feminist_200(7).json';
-import feminist_sample_8 from '../Data/Feminism/sample_feminist_200(8).json';
+import abortion_sample_1 from '../Data/Abortion/sample_abortion_200(1).json';
+import abortion_sample_2 from '../Data/Abortion/sample_abortion_200(2).json';
+import abortion_sample_3 from '../Data/Abortion/sample_abortion_200(3).json';
+import abortion_sample_4 from '../Data/Abortion/sample_abortion_200(4).json';
+import abortion_sample_5 from '../Data/Abortion/sample_abortion_200(5).json';
+import abortion_sample_6 from '../Data/Abortion/sample_abortion_200(6).json';
+import abortion_sample_7 from '../Data/Abortion/sample_abortion_200(7).json';
+import abortion_sample_8 from '../Data/Abortion/sample_abortion_200(8).json';
 
 import './page.css';
 
@@ -75,36 +75,36 @@ export const Task1Page = (props) => {
             if (snapshot.exists()) {
                 const userNum = snapshot.val().user_num;
                 if(userNum % 8 === 0) {
-                    setTweetData(shuffleArray(feminist_sample_1));
-                    setAnswer(Array(feminist_sample_1.length).fill(['', '']));
+                    setTweetData(shuffleArray(abortion_sample_1));
+                    setAnswer(Array(abortion_sample_1.length).fill(['', '']));
                 }
                 else if (userNum % 8 === 1) {
-                    setTweetData(shuffleArray(feminist_sample_2));
-                    setAnswer(Array(feminist_sample_2.length).fill(['', '']));
+                    setTweetData(shuffleArray(abortion_sample_2));
+                    setAnswer(Array(abortion_sample_2.length).fill(['', '']));
                 }
                 else if (userNum % 8 === 2) {
-                    setTweetData(shuffleArray(feminist_sample_3));
-                    setAnswer(Array(feminist_sample_3.length).fill(['', '']));
+                    setTweetData(shuffleArray(abortion_sample_3));
+                    setAnswer(Array(abortion_sample_3.length).fill(['', '']));
                 }
                 else if (userNum % 8 === 3) {
-                    setTweetData(shuffleArray(feminist_sample_4));
-                    setAnswer(Array(feminist_sample_4.length).fill(['', '']));
+                    setTweetData(shuffleArray(abortion_sample_4));
+                    setAnswer(Array(abortion_sample_4.length).fill(['', '']));
                 }
                 else if (userNum % 8 === 4) {
-                    setTweetData(shuffleArray(feminist_sample_5));
-                    setAnswer(Array(feminist_sample_5.length).fill(['', '']));
+                    setTweetData(shuffleArray(abortion_sample_5));
+                    setAnswer(Array(abortion_sample_5.length).fill(['', '']));
                 }
                 else if (userNum % 8 === 5) {
-                    setTweetData(shuffleArray(feminist_sample_6));
-                    setAnswer(Array(feminist_sample_5.length).fill(['', '']));
+                    setTweetData(shuffleArray(abortion_sample_6));
+                    setAnswer(Array(abortion_sample_6.length).fill(['', '']));
                 }
                 else if (userNum % 8 === 6) {
-                    setTweetData(shuffleArray(feminist_sample_7));
-                    setAnswer(Array(feminist_sample_7.length).fill(['', '']));
+                    setTweetData(shuffleArray(abortion_sample_7));
+                    setAnswer(Array(abortion_sample_7.length).fill(['', '']));
                 }
                 else {
-                    setTweetData(shuffleArray(feminist_sample_8));
-                    setAnswer(Array(feminist_sample_8.length).fill(['', '']));
+                    setTweetData(shuffleArray(abortion_sample_8));
+                    setAnswer(Array(abortion_sample_8.length).fill(['', '']));
                 }
             } else {
                 console.log("No data available");
@@ -163,7 +163,7 @@ export const Task1Page = (props) => {
                     {currentPageNum === 7 ?
                         <>
                             <div className='explaination'>
-                                In <b>task 1</b>, your goal is to detect <a style={{color: "#0481FF"}}><b>hate speech targeting the feminist movement</b></a> in the given tweets and provide annotations accordingly.
+                                In <b>task 1</b>, your goal is to detect <a style={{color: "#0481FF"}}><b>hate speech targeting the legalization of abortion</b></a> in the given tweets and provide annotations accordingly.
                                 After each tweet, there will be a <a style={{color: "#0481FF"}}><b>set of cognitive information processing steps</b> generated by <b>AI</b></a>. 
                                 There are three key steps in cognitive information processing: <i>perception</i>, <i>cognition</i>, and <i>action</i>.
                             </div>
@@ -188,13 +188,13 @@ export const Task1Page = (props) => {
                                 <b> • &nbsp;Non-hate:</b> If a tweet does not contain hate speech, select this annotation. Tweets in this category should be free from any form of hate speech or offensive language.
                             </div>
                             <div className='explaination'>
-                                If you select the <b>“Non-hate”</b>, you will be provided with an option to check whether the tweet belongs to the case of <b>"Advocate"</b> of feminist movement or not.
+                                If you select the <b>“Non-hate”</b>, you will be provided with an option to check whether the tweet belongs to the case of <b>"Advocate"</b> of the legalization of abortion or not.
                             </div>
                         </>
                     : 
                         <>
                             <div className='explaination'>
-                                Please classify the following <a style={{color: "#0481FF"}}><b>initial tweet</b></a> (not tweet reply) as hate speech or non-hate speech to the <b>feminist movement</b> by referring to the information generated by AI.
+                                Please classify the following <a style={{color: "#0481FF"}}><b>initial tweet</b></a> (not tweet reply) as hate speech or non-hate speech to the <b>people who support legalization of abortion</b> by referring to the information generated by AI.
                             </div>
                             <div className='explainBox'>
                                 <b>Annotation definitions:</b>
@@ -228,7 +228,7 @@ export const Task1Page = (props) => {
                                             <div className='question reply'>
                                             <b>Action: "</b><i>{data.action}</i><b>"</b>
                                             </div>
-                                            <Multichoice key={index} val={answer[index][0]} setAnswer={(val) => setIthAnswer(index, 0, val)} labels={['Hate', 'Non-hate']} id={id} tasknum={"task1"} qnum={index}/>
+                                            <Multichoice key={index} val={answer[index][0]} setAnswer={(val) => setIthAnswer(index, 0, val)} labels={['Hate', 'Non-hate']} id={id} tasknum={"task1"} qnum={`${index}-main`}/>
 
                                             {answer[index][0] === 'Non-hate' ? 
                                                 <div className='extraQuestionContainer'>
