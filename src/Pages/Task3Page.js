@@ -162,7 +162,7 @@ export const Task3Page = (props) => {
                     {currentPageNum === 11 ?
                         <>
                             <div className='explaination'>
-                                In <b>task 3</b>, the topic will differ from task 1 and 2. 
+                                In <b>task 3</b>, the topic will <b>differ</b> from task 1 and 2. 
                                 Your goal is to detect <a style={{color: "#0481FF"}}><b>hate speech targeting the feminist movement</b></a> in the given tweets and provide annotations accordingly.
                                 Please carefully read the instructions below to complete the annotations.
                             </div>
